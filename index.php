@@ -9,11 +9,6 @@
         <h1>Image Rater [logo]</h1>
 
         <div id="header-links">
-            <?php
-                $connection = mysqli_connect
-                ('localhost','guest','guest','DarkHorse')
-                or die(mysqli_error($connection));
-            ?>
             <a href="">SIGN IN</a>
              |
             <a href="">SIGN UP</a>
@@ -22,45 +17,53 @@
 
         <h2>Recent Images</h2>
 
-        <?php
-
-            // select * from Images ORDER BY upload_time DESC LIMIT 3;
-
-            $recentimg1 = "";
-            $recentimg2 = "";
-            $recentimg3 = "";
-
-        ?>
+        <!-- MAKE SURE TITLES HAVE EXTENSION ON THEM OR IT WON'T WORK -->
 
         <div id="recent-images" class="wrapper-box">
 
+        <?php
+
+        // Create connection
+        $conn = new mysqli("localhost", "guest", "guest", "DarkHorse");
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT * FROM Images ORDER BY upload_time DESC LIMIT 3";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0)
+        {
+            while($row = $result->fetch_assoc())
+            {
+
+                $title = "src/resources/" . $row["title"];
+                $caption = $row["caption"];
+                $user = $row["user_id"];
+                $rating = $row["rating"];
+                $date = $row["upload_time"];
+
+                echo <<<XYZ
+            
             <div class = "image">
-                <img src = "src/resources/<?php echo "$recentimg1"?>"><br/>
+                <img src = "$title"><br/>
                 <span class="image-text">
-                    Caption: <br/>
-                    User: <br/>
-                    Rating: <br/>
-                    Date:
+                    Caption: $caption<br/>
+                    Uploaded by: $user<br/>
+                    Rating: $rating<br/>
+                    Date: $date
                 </span>
             </div>
-            <div class = "image">
-                <img src = "src/resources/<?php echo "$recentimg2"?>"><br/>
-                <span class="image-text">
-                    Caption: <br/>
-                    User: <br/>
-                    Rating: <br/>
-                    Date:
-                </span>
-            </div>
-            <div class = "image">
-                <img src = "src/resources/<?php echo "$recentimg3"?>"><br/>
-                <span class="image-text">
-                    Caption: <br/>
-                    User: <br/>
-                    Rating: <br/>
-                    Date:
-                </span>
-            </div>
+                
+XYZ;
+            }
+        } else {
+            echo "No images have been uploaded.";
+        }
+        $conn->close();
+
+        ?>
 
         </div>
 

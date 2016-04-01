@@ -51,11 +51,12 @@ if ($goodToGo == 1) {
         $title = $_FILES['photo']['name'];
         $user_id = " ";
         $caption = $_POST['caption'];
+        $date = date("Y-m-d H:i:s");
 
         // Writes the information to the database
-        // Inserts current time into the upload_time field
+        // Inserts current time into the upload_time fieldY
         // Inserts rating as null
-        $insert = "INSERT INTO Images VALUES ('$title', '$user_id', '$caption', date(\"Y-m-d H:i:s\"), null)";
+        $insert = "INSERT INTO Images VALUES ('$title', '$user_id', '$caption', '$date', null)";
 
         if (!$conn->query($insert) === TRUE) {
             echo "Error: " . $conn->error . "<br/>";
