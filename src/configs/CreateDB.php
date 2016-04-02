@@ -1,55 +1,182 @@
 <?php
+namespace dark_horse\hw3\configs;
+require_once("./Config.php");
 
-/**
- * @author: Christy
- */
-    $username = "guest"; // user must have privileges to create DB
-    $password = "guest";
+function connect() {
+    $mysqli = mysqli_connect(Config::host, 
+                             Config::username, 
+                             Config::password);
 
-    $conn = mysqli_connect("localhost", $username, $password);
-
-// Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    echo "Connecting to MySQL.\n";
+    if (mysqli_connect_errno($mysqli)) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error() . "\n\n";
+        exit();
     }
-    echo "Connected successfully\n";
+    echo "Connected.\n\n";
+    return $mysqli;
+}
 
-// Create database
-    $create = "CREATE DATABASE DarkHorse";
-    if ($conn->query($create) === TRUE) {
-        echo "Database created successfully\n";
-    } else {
-        echo "Error creating database: " . $conn->error . "\n";
+function create_db($mysqli) {
+    echo "Creating database HW3.\n";
+    $mysqli->query("DROP DATABASE IF EXISTS HW3;");
+    $mysqli->query("CREATE DATABASE HW3;");
+    $res = $mysqli->query("USE HW3;");
+    if ($res)
+        echo "Done.\n\n";
+    else {
+        echo "Failed to create database HW3.\n\n";
+        $mysqli->close();
+        exit();
     }
+}
 
-// Switch to databsae
-    $conn->select_db('DarkHorse');
-
-
-// Query for creating table Users
-    $userTable = "CREATE TABLE Users (
-  id INT(6) PRIMARY KEY,
-  email VARCHAR(320),
-  password VARCHAR(20
-  ))";
-
-//Query for creating table Images
-    $imageTable = "CREATE TABLE Images (
-  title VARCHAR(30) PRIMARY KEY,
-  user_id VARCHAR(30),
-  caption VARCHAR(50),
-  upload_time DATETIME,
-  rating TINYINT
-  )";
-
-// Print results :)
-    if ($conn->query($userTable) === TRUE && $conn->query($imageTable) === TRUE) {
-        echo "Tables created successfully :D\n";
-    } else {
-        echo "Error creating tables: " . $conn->error . "\n";
+function create_table_pics($mysqli) {
+    echo "Creating table PICTURES.\n";
+    $mysqli->query("DROP TABLE IF EXISTS PICTURES;");
+    $res = $mysqli->query("CREATE TABLE PICTURES(
+                            IMG_ID INT NOT NULL AUTO_INCREMENT, 
+                            RATING REAL,
+                            USER_ID INT NOT NULL,
+                            CAPTION VARCHAR(255),
+                            POSTED DATE,
+                            PICTURE BLOB(10485760),
+                            PICTURE_LEN INT,
+                            PRIMARY KEY (IMG_ID));");
+    if ($res)
+        echo "Done.\n\n";
+    else {
+        echo "Could not create table for pictures.\n\n";
+        $mysqli->close();
+        exit();
     }
+}
 
-    $conn->close();
+function populate_table_pics($mysqli) {
+    $captions = [   [],
+                    [0.5, 1, "One is the bluest number."],
+                    [1, 2, "Two on fire."],
+                    [1.5, 3, "Three is deseased."],
+                    [2, 3, "Draw four in under four moves!"],
+                    [2.5, 2, "Cinema."],
+                    [3, 4, "Vintage sign. No filter."],
+                    [3.5, 4, "Rusty 7."],
+                    [4, 1, "8ball"],
+                    [4.5, 4, "Vintage sign. No filter."],
+                    [5, 5, "Noble."] ];
 
+    echo "Populating table for pictures.\n";
+    $stmt = $mysqli->stmt_init();
+    if ($stmt->prepare("INSERT INTO PICTURES VALUES(?, ?, ?, ?, ?, ?, ?);")) {
+        for ($i = 1; $i <= 10; $i++) {
+            # load file
+            $filename = "./init/" . $i . ".jpg";
+            $file = file_get_contents($filename);
 
+            $stmt->bind_param(  "idisssi",
+                                $i,                 # id
+                                $captions[$i][0],   # rating
+                                $captions[$i][1],   # user_id
+                                $captions[$i][2],   # caption
+                                date("Y-m-d"),      # date
+                                $file,              # file and size
+                                filesize($filename));
+            $res = $stmt->execute();
+            if (!$res) {
+                echo "Failed to populate table PICTURES.\n\n";
+                $stmt->close();
+                $mysqli->close();
+                exit();
+            }
+        }
+        $stmt->close();
+    }
+    echo "Done.\n\n";
+}
+
+function create_table_user($mysqli) {
+    echo "Creating table USER.\n";
+    $mysqli->query("DROP TABLE IF EXISTS USER;");
+    $res = $mysqli->query("CREATE TABLE USER(  
+                                USER_ID INT NOT NULL AUTO_INCREMENT,
+                                NAME VARCHAR(100),
+                                USERNAME VARCHAR(20),
+                                PASSWORD VARCHAR(50),
+                                PRIMARY KEY(USER_ID));");
+    if (!$res) {
+        echo "Failed to create table USER.\n\n";
+        $mysqli->close();
+        exit();
+    }
+    echo "Done.\n\n";
+}
+
+function populate_table_user($mysqli) {
+    echo "Populating table with users.\n";
+    $stmt = $mysqli->stmt_init();
+    if ($stmt->prepare("INSERT INTO USER VALUES(?, ?, ?, ?);")) {
+        $users = [  [1, "First User", "fuser", "fpass"],
+                    [2, "Second User", "suser", "spass"],
+                    [3, "Third User", "tuser", "tpass"],
+                    [0, "Zeroth User", "zuser", "zpass"]];
+
+        foreach($users as $user) {
+            $stmt->bind_param(  "isss",
+                                $user[0],   # user_id
+                                $user[1],   # actual name
+                                $user[2],   # username
+                                $user[3]);  # password
+            $stmt->execute();
+        }
+    }
+    echo "Done.\n\n";
+}
+
+function create_table_votes($mysqli) {
+    echo "Creating table for votes.\n";
+    $mysqli->query("DROP TABLE IF EXISTS VOTES");
+    $r = $mysqli->query("CREATE TABLE VOTES(USER_ID INT NOT NULL,
+                                            IMG_ID INT NOT NULL,
+                                            RATING INT,
+                                            PRIMARY KEY(USER_ID, IMG_ID));");
+    if (!$r) {
+        echo "Failed to create table VOTES.\n";
+        $mysqli->close();
+        exit();
+    }
+    echo "Done.\n\n";
+}
+
+function populate_table_votes($mysqli) {
+    echo "Populating table VOTES.\n";
+    $stmt = $mysqli->stmt_init();
+    if ($stmt->prepare("INSERT INTO VOTES VALUES(?, ?, ?);")) {
+        $ratings = [[1, 1, 1],
+                    [2, 2, 2],
+                    [3, 3, 3],
+                    [4, 4, 4],
+                    [1, 5, 1.5],
+                    [2, 6, 2.5],
+                    [3, 7, 3.5],
+                    [4, 8, 4.5],
+                    [1, 9, 2],
+                    [2, 10, 3]];
+        foreach($ratings as $rating) {
+            $stmt->bind_param('iid', $rating[0], $rating[1], $rating[2]);
+            $stmt->execute();
+        }
+    }
+    $stmt->close();
+    echo "Done.\n\n";
+}
+
+$mysqli = connect();
+create_db($mysqli);
+create_table_pics($mysqli);
+populate_table_pics($mysqli);
+create_table_user($mysqli);
+populate_table_user($mysqli);
+create_table_votes($mysqli);
+populate_table_votes($mysqli);
+$mysqli->close();
+echo "Complete.\n";
 ?>
