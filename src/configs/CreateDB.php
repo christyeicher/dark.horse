@@ -117,7 +117,7 @@ function create_table_user($mysqli) {
                            NAME VARCHAR(100),
                            USERNAME VARCHAR(20),
                            PASSWORD VARCHAR(50),
-                           COOKIE VARCHAR(50),
+                           COOKIE VARCHAR(50) DEFAULT NULL,
                            PRIMARY KEY(USER_ID));");
     if (!$res) {
         echo "Failed to create table USER.\n\n";
@@ -132,7 +132,7 @@ function populate_table_user($mysqli) {
     $stmt = $mysqli->stmt_init();
 
     if ($stmt->prepare("INSERT INTO USER
-                        VALUES(?, ?, ?, ?);")) {
+                        VALUES(?, ?, ?, ?, NULL);")) {
 
         $users = [[1, "First User", "fuser", "fpass"],
                   [2, "Second User", "suser", "spass"],
