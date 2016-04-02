@@ -9,7 +9,7 @@
         <h1>Image Rater [logo]</h1>
 
         <div id="header-links">
-            <a href="">SIGN IN</a>
+            <a href="src/controllers/Controller.php?nav=login">SIGN IN</a>
              |
             <a href="">SIGN UP</a>
         </div>
@@ -22,6 +22,8 @@
         <div id="recent-images" class="wrapper-box">
 
         <?php
+        if (isset($_COOKIE["user"])) 
+            echo "Connected as" . $_COOKIE["user"] . "<br>";
         use dark_horse\hw3\configs as cfg;
         require_once("./src/configs/Config.php");
         // Create connection
@@ -51,6 +53,14 @@
                 $user = $row["USER_ID"];
                 $rating = $row["RATING"];
                 $date = $row["POSTED"];
+
+                $res = $conn->query("SELECT NAME
+                                     FROM USER
+                                     WHERE USER_ID=" . $user . ";");
+                if ($res->num_rows > 0) {
+                    $user = $res->fetch_assoc();
+                    $user = $user["NAME"];
+                }
 
                 echo <<<XYZ
             
