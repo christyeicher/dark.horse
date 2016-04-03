@@ -7,19 +7,19 @@ require_once("../models/Login.php");
 
 class Login {
     function LoadLoginPage() {
+        session_start();
         view\LoginPageView::render(null);
+        exit();
     }
 
     function LogIn($user, $pass) {
         $results = mod\Login::login($user, $pass);
+        // If no error...
         if ($results[0] == null) {
-            //echo "index.php as $results[1] with $results[2].";
-            setcookie("user",
-                      $results[2],
-                      time()+3600, // One hour
-                      "/dark.horse");
+            session_start();
+            $_SESSION["user_id"] = $results[1];
+            $_SESSION["user_name"] = $results[2];
             header("Location: /dark.horse/index.php");
-            exit();
         }
         else
             view\LoginPageView::render($results[0]);

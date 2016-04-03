@@ -1,3 +1,6 @@
+<?php
+session_start();
+?><!doctype html>
 <html>
 <head>
     <title>Image Rater</title>
@@ -9,9 +12,17 @@
         <h1>Image Rater [logo]</h1>
 
         <div id="header-links">
-            <a href="src/controllers/Controller.php?nav=login">SIGN IN</a>
-             |
-            <a href="">SIGN UP</a>
+        <?php
+        if (isset($_SESSION["user_name"])) {
+            echo "Hello, " . $_SESSION["user_name"] . " ( 
+            <a href='src/controllers/Controller.php?nav=logout'>
+            LOG OUT</a> )";
+        }
+        else {
+           ?><a href="src/controllers/Controller.php?nav=login">SIGN IN</a>
+            |
+           <a href="">SIGN UP</a><?php
+        } ?>
         </div>
 
 
@@ -22,8 +33,6 @@
         <div id="recent-images" class="wrapper-box">
 
         <?php
-        if (isset($_COOKIE["user"])) 
-            echo "Connected as" . $_COOKIE["user"] . "<br>";
         use dark_horse\hw3\configs as cfg;
         require_once("./src/configs/Config.php");
         // Create connection

@@ -5,21 +5,23 @@ if (isset($_GET["nav"])) {
     if ($_GET["nav"] == "login") {
         require_once("./Login.php");
         Login::LoadLoginPage();
-        exit();
+    }
+    elseif ($_GET["nav"] == "logout") {
+        require_once("./Logout.php");
+        Logout::LoadLogoutPage();
     }
 }
-if (isset($_GET["user"])) {
+elseif (isset($_GET["user"])) {
     if (isset($_GET["pass"])) {
         require_once("./Login.php");
         Login::LogIn($_GET["user"], $_GET["pass"]);
-        exit();
     }
     else {
         require_once("../views/LoginPage.php");
         dark_horse\hw3\views\LoginPageView::render("error");
-        exit();
     }
 }
+exit();
 // Display any errors
 ini_set('display_errors',1);
 error_reporting(E_ALL);
