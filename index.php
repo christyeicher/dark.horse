@@ -9,7 +9,7 @@
         <h1>Image Rater [logo]</h1>
 
         <div id="header-links">
-            <a href="">SIGN IN</a>
+            <a href="src/controllers/Controller.php?nav=login">SIGN IN</a>
              |
             <a href="">SIGN UP</a>
         </div>
@@ -22,15 +22,25 @@
         <div id="recent-images" class="wrapper-box">
 
         <?php
-
+        if (isset($_COOKIE["user"])) 
+            echo "Connected as" . $_COOKIE["user"] . "<br>";
+        use dark_horse\hw3\configs as cfg;
+        require_once("./src/configs/Config.php");
         // Create connection
-        $conn = new mysqli("localhost", "guest", "guest", "DarkHorse");
+        $conn = new mysqli( cfg\Config::host, 
+                            cfg\Config::username, 
+                            cfg\Config::password, 
+                            cfg\Config::db);
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM Images ORDER BY upload_time DESC LIMIT 3";
+        $sql = "SELECT IMG_ID,
+                       RATING,
+                       USER_ID,
+                       CAPTION,
+                       POSTED FROM PICTURES ORDER BY IMG_ID DESC LIMIT 3";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0)
@@ -38,16 +48,24 @@
             while($row = $result->fetch_assoc())
             {
 
-                $title = "src/resources/" . $row["title"];
-                $caption = $row["caption"];
-                $user = $row["user_id"];
-                $rating = $row["rating"];
-                $date = $row["upload_time"];
+                $image = "./src/controllers/img.php?img=" . $row["IMG_ID"];
+                $caption = $row["CAPTION"];
+                $user = $row["USER_ID"];
+                $rating = $row["RATING"];
+                $date = $row["POSTED"];
+
+                $res = $conn->query("SELECT NAME
+                                     FROM USER
+                                     WHERE USER_ID=" . $user . ";");
+                if ($res->num_rows > 0) {
+                    $user = $res->fetch_assoc();
+                    $user = $user["NAME"];
+                }
 
                 echo <<<XYZ
             
             <div class = "image">
-                <img src = "$title"><br/>
+                <img src = "$image"><br/>
                 <span class="image-text">
                     Caption: $caption<br/>
                     Uploaded by: $user<br/>
