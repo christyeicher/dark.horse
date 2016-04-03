@@ -69,14 +69,14 @@ function populate_table_pics($mysqli) {
     $captions = [[],
                  [0.5, 1, "One is the bluest number."],
                  [1, 2, "Two on fire."],
-                 [1.5, 3, "Three is deseased."],
-                 [2, 3, "Draw four in under four moves!"],
+                 [4.5, 3, "Three is deseased."],
+                 [4.2, 3, "Draw four in under four moves!"],
                  [2.5, 2, "Cinema."],
                  [3, 4, "Vintage sign. No filter."],
                  [3.5, 4, "Rusty 7."],
                  [4, 1, "8ball"],
                  [4.5, 4, "Vintage sign. No filter."],
-                 [5, 12, "Noble."] ];
+                 [2.5, 12, "Noble."] ];
 
     echo "Populating table for pictures.\n";
     $stmt = $mysqli->stmt_init();
