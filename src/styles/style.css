@@ -12,6 +12,11 @@ div#header-links {
     float: right;
     font-size: medium;
 }
+div#popular-images{
+    text-align: center;
+    color: #73aD21;
+    font-weight: bold;
+}
 div#recent-images{
     text-align: center;
     color: #73aD21;

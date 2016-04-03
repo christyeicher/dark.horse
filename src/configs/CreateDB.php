@@ -1,5 +1,10 @@
 <?php
 namespace dark_horse\hw3\configs;
+
+if (!file_exists("./CreateDB.php")) {
+    echo "File must be ran from current folder.\n";
+    exit();
+}
 require_once("./Config.php");
 
 function connect() {
@@ -117,7 +122,6 @@ function create_table_user($mysqli) {
                            NAME VARCHAR(100),
                            USERNAME VARCHAR(20),
                            PASSWORD VARCHAR(50),
-                           COOKIE VARCHAR(50) DEFAULT NULL,
                            PRIMARY KEY(USER_ID));");
     if (!$res) {
         echo "Failed to create table USER.\n\n";
@@ -132,7 +136,7 @@ function populate_table_user($mysqli) {
     $stmt = $mysqli->stmt_init();
 
     if ($stmt->prepare("INSERT INTO USER
-                        VALUES(?, ?, ?, ?, NULL);")) {
+                        VALUES(?, ?, ?, ?);")) {
 
         $users = [[1, "First User", "fuser", "fpass"],
                   [2, "Second User", "suser", "spass"],
