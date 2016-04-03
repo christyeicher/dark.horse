@@ -55,10 +55,47 @@ div.image {
 span.rating {
     position: relative;
     left: -40px;
+    height: 16px;
 }
 img.rating {
     position: absolute;
     left: 0;
-    top: 0;
     height: 16px;
+}
+a.vote1 {
+    text-decoration: none;
+    position: absolute;
+    left: -1px;
+    height: 16px;
+}
+a.vote2 {
+    text-decoration: none;
+    position: absolute;
+    left: 15px;
+    height: 16px;
+}
+a.vote3 {
+    text-decoration: none;
+    position: absolute;
+    left: 30px;
+    height: 16px;
+}
+a.vote4 {
+    text-decoration: none;
+    position: absolute;
+    left: 46px;
+    height: 16px;
+}
+a.vote5 {
+    text-decoration: none;
+    position: absolute;
+    left: 62px;
+    height: 16px;
+}
+img.vote {
+    width: 16px;
+    height: 16px;
+}
+img.vote:hover {
+    content: url("../resources/redstar.png");
 }

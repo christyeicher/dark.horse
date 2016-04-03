@@ -19,9 +19,7 @@ class MostSomething {
                            cfg\Config::db);
 
         if ($sql->connect_error) 
-            return "<div>Database error :( "
-                   . $sql->connect_error
-                   . "</div>";
+            return $sql->connect_error;
         
         $res = $sql->query("SELECT IMG_ID, RATING, USER_ID, CAPTION, POSTED
                             FROM PICTURES
@@ -42,6 +40,7 @@ class MostSomething {
             $results[$i]["POSTED"] = $row["POSTED"];
             $i++;
         }
+        $sql->close();
         return $results;
     }
 }
