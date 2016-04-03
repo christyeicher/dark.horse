@@ -28,10 +28,11 @@ class LoginPage {
                       action='Controller.php'>
                     <input type='text' 
                            name='user' 
-                           placeholder='Username'/><br><br>
+                           placeholder='Username'
+                           autofocus><br><br>
                     <input type='password' 
                            name='pass' 
-                           placeholder='Password'/><br><br>
+                           placeholder='Password'><br><br>
                     <input type='submit' 
                            value='Login'/>
                 </form>

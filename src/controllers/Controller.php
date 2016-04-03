@@ -7,8 +7,10 @@ if (isset($_GET["nav"])) {
         Login::LoadLoginPage();
     }
     elseif ($_GET["nav"] == "logout") {
-        require_once("./Logout.php");
-        Logout::LoadLogoutPage();
+        session_start();
+        session_unset();
+        session_destroy();
+        header("Location: ../views/LogoutPage.html");
     }
 }
 elseif (isset($_GET["user"])) {
