@@ -12,9 +12,11 @@ class Picture {
                     Uploaded by: " . $data["USER_NAME"] . "<br>
                     <span class='rating'>
                        <img class='rating'
+                            alt='rating background'
                             src='src/resources/0star.png'>
                        <img class='rating'
                             src='src/resources/5star.png'
+                            alt='Out of five stars.'
                             style='clip:rect(0px "
                             . $data["RATING"]
                             . "px 16px 0px);'>
