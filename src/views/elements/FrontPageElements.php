@@ -18,10 +18,8 @@ class FrontPage {
 
     const loginsignup = "
         <div id='header-links'>
-            <a href='src/controllers/Controller.php?nav=login'>
-               SIGN IN </a> |
-            <a href='src/controllers/Controller.php?nav=signup'>
-               SIGN UP </a>
+            <a href='src/controllers/Controller.php?nav=login'>SIGN IN</a> |
+            <a href='src/controllers/Controller.php?nav=signup'>SIGN UP</a>
         </div>";
 
     const middleRecent = "

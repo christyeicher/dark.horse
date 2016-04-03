@@ -2,33 +2,41 @@
 namespace dark_horse\hw3\views\elements;
 
 class LoginPage {
-    const top = 
-    "<!doctype html>
-        <html>
-            <head>
-                <title>Log In</title>
-                <meta charset='utf-8'>
-                <style>
-                    body {
-                        margin: auto;
-                        width: 800px;
-                    }
-                </style>
-            </head>
-            <body>
-                <h1>Log In</h1>";
+    const top = "<!doctype html>
+<html>
+    <head>
+        <title>Log In</title>
+        <meta charset='utf-8'>
+        <link rel='stylesheet'
+              href='../styles/style.css'
+              type='text/css'>
+    </head>
+    <body>
+        <div id='wrapper'>
+            <img src='../views/elements/logo.png'
+                 alt='Dark Horse, Inc.'>
+            <div id='header-links'>
+                <a href='../../index.php'>MAIN PAGE</a> |
+                <a href='Controller.php?nav=signup'>SIGN UP</a>
+            </div>
+            <h2>Please Enter Your Credentials</h2>
+            <div class='wrapper-box'>";
 
-    const errorMessage = 
-    "<div style='color: red;'>
-        Credentials did not match.
-    </div>";
-
-    const bottom = 
-    "<form name='login' method='get' action='Controller.php'>
-        <input type='text' name='user' placeholder='Username'/><br>
-        <input type='password' name='pass' placeholder='Password'/><br>
-        <input type='submit' value='Login'/>
-    </form>
+    const bottom = "
+                <form name='login' 
+                      method='get' 
+                      action='Controller.php'>
+                    <input type='text' 
+                           name='user' 
+                           placeholder='Username'/><br><br>
+                    <input type='password' 
+                           name='pass' 
+                           placeholder='Password'/><br><br>
+                    <input type='submit' 
+                           value='Login'/>
+                </form>
+            </div>
+        </div>
     </body>
     </html>";
 };
