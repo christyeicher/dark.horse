@@ -8,12 +8,16 @@ require_once("src/views/Picture.php");
 class Most {
     function popular() {
         $pictures = mods\MostSomething::popular();
+        for ($i = 0; isset($pictures[$i]); $i++)
+            $pictures[$i]["RATING"] *= 15.8;
         return Most::render($pictures);
     }
 
     function recent() {
         $pictures = mods\MostSomething::recent();
-         return Most::render($pictures);
+        for ($i = 0; isset($pictures[$i]); $i++)
+            $pictures[$i]["RATING"] *= 15.8;
+        return Most::render($pictures);
     }
 
     private function render($pictures) {

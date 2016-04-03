@@ -9,6 +9,7 @@ class FrontPage {
     function frontPage() {
         $data["most_recent"] = Most::recent();
         $data["most_popular"] = Most::popular();
+        
         if (isset($_SESSION["user_id"]) and isset($_SESSION["user_name"])) {
             $data["user_name"] = $_SESSION["user_name"];
             view\UserFrontView::render($data);
