@@ -1,5 +1,10 @@
 <?php
 namespace dark_horse\hw3\configs;
+
+if (!file_exists("./CreateDB.php")) {
+    echo "File must be ran from current folder.\n";
+    exit();
+}
 require_once("./Config.php");
 
 function connect() {
