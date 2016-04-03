@@ -13,7 +13,7 @@ class LoginPage {
     </head>
     <body>
         <div id='wrapper'>
-            <img src='../views/elements/logo.png'
+            <img src='../resources/logo.png'
                  alt='Dark Horse, Inc.'>
             <div id='header-links'>
                 <a href='../../index.php'>MAIN PAGE</a> |

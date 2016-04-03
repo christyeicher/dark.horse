@@ -13,7 +13,7 @@ class FrontPage {
 </head>
 <body>
     <div id='wrapper'>
-        <img src='src/views/elements/logo.png'
+        <img src='src/resources/logo.png'
              alt='Dark Horse, Inc.' >";
 
     const loginsignup = "
