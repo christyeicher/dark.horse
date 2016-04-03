@@ -1,38 +1,12 @@
 <?php
 session_start();
-?><!doctype html>
-<html>
-<head>
-    <title>Image Rater</title>
-    <link rel="stylesheet" href="src/styles/style.css" type="text/css" />
-</head>
-<body>
-    <div id="wrapper">
+require_once("./src/controllers/FrontPage.php");
 
-        <h1>Image Rater [logo]</h1>
-
-        <div id="header-links">
-        <?php
-        if (isset($_SESSION["user_name"])) {
-            echo "Hello, " . $_SESSION["user_name"] . " ( 
-            <a href='src/controllers/Controller.php?nav=logout'>
-            LOG OUT</a> )";
-        }
-        else {
-           ?><a href="src/controllers/Controller.php?nav=login">SIGN IN</a>
-            |
-           <a href="">SIGN UP</a><?php
-        } ?>
-        </div>
-
-
-        <h2>Recent Images</h2>
-
-        <!-- MAKE SURE TITLES HAVE EXTENSION ON THEM OR IT WON'T WORK -->
-
-        <div id="recent-images" class="wrapper-box">
-
-        <?php
+\dark_horse\hw3\controllers\FrontPage::frontPage();
+exit();
+/////////////////////////////////////
+//NOTHING IS USED BELOW THIS LINE
+?>     <?php
         use dark_horse\hw3\configs as cfg;
         require_once("./src/configs/Config.php");
         // Create connection
