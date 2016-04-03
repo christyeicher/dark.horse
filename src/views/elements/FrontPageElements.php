@@ -13,15 +13,16 @@ class FrontPage {
 </head>
 <body>
     <div id='wrapper'>
-        <h1>Image Rater [logo]</h1>";
+        <img src='src/views/elements/logo.png'
+             alt='Dark Horse, Inc.' >";
 
     const loginsignup = "
-<div id='header-links'>
-    <a href='src/controllers/Controller.php?nav=login'>
-       SIGN IN </a> |
-    <a href='src/controllers/Controller.php?nav=signup'>
-       SIGN UP </a>
-</div>";
+        <div id='header-links'>
+            <a href='src/controllers/Controller.php?nav=login'>
+               SIGN IN </a> |
+            <a href='src/controllers/Controller.php?nav=signup'>
+               SIGN UP </a>
+        </div>";
 
     const middleRecent = "
         <h2>Recent Images</h2>
