@@ -13,8 +13,12 @@ class FrontPage {
 </head>
 <body>
     <div id='wrapper'>
+        <h1 title='For compatibility with requirements.'>
+            Image Rating
+        </h1>
         <img src='src/resources/logo.png'
-             alt='Dark Horse, Inc.' >";
+             alt='Dark Horse, Inc.'
+             title='Dark Horse, Inc.' >";
 
     const loginsignup = "
         <div id='header-links'>
