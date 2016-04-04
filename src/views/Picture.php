@@ -5,7 +5,9 @@ class Picture {
     function render($data) {
         $result = "
             <div class='image'>
-                <img src='src/controllers/img.php?img=".$data["IMG_ID"]."'
+                <img src='src/resources/userimages/"
+                        . $data["IMG_ID"]
+                        . ".jpg'
                      alt='" . $data["CAPTION"] . "'><br>
                 <span class='image-text'>
                     Caption: " . $data["CAPTION"] . "<br>

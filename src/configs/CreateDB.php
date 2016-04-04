@@ -53,8 +53,7 @@ function create_table_pics($mysqli) {
                            USER_ID INT NOT NULL,
                            CAPTION VARCHAR(255),
                            POSTED DATE,
-                           PICTURE BLOB(10485760),
-                           PICTURE_LEN INT,
+                           FILENAME VARCHAR(100),
                            PRIMARY KEY (IMG_ID));");
     if ($res)
         echo "Done.\n\n";
@@ -82,21 +81,16 @@ function populate_table_pics($mysqli) {
     $stmt = $mysqli->stmt_init();
 
     if ($stmt->prepare("INSERT INTO PICTURES
-                        VALUES(?, ?, ?, ?, ?, ?, ?);")) {
+                        VALUES(?, ?, ?, ?, ?, ?);")) {
 
         for ($i = 1; $i <= 10; $i++) {
-            # load file
-            $filename = "./init/" . $i . ".jpg";
-            $file = file_get_contents($filename);
-
-            $stmt->bind_param("idisssi",
+            $stmt->bind_param("idisss",
                               $i,                 # id
                               $captions[$i][0],   # rating
                               $captions[$i][1],   # user_id
                               $captions[$i][2],   # caption
                               date("Y-m-d"),      # date
-                              $file,              # file and size
-                              filesize($filename));
+                              $i);                # filename  
             $res = $stmt->execute();
             if (!$res) {
                 echo "Failed to populate table PICTURES.\n\n";
