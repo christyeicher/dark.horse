@@ -2,8 +2,8 @@
 namespace dark_horse\hw3\configs;
 
 class Config {
-    const username = "root";
-    const password = "clamp";
+    const username = "guest";
+    const password = "guest";
     const host = "localhost";
     const db = "HW3";
 };
