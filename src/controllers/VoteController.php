@@ -1,16 +1,18 @@
 <?php
 namespace dark_horse\hw3\controllers;
 use dark_horse\hw3\models as mod;
-require_once("src/models/Vote.php");
+require_once("src/models/VoteModel.php");
 
-class Vote {
-    function render($data) {
+class VoteController {
+    function submit($data) {
         if (isset($_SESSION["user_id"])) {
             $data["user_id"] = $_SESSION["user_id"];
-            mod\Vote::submit($data);
+            $vote = new mod\VoteModel();
+            $vote->fetch($data);
+
+            // Not expecting any data, so just forward.
             header("Location: index.php");
         }
-        exit();
     }
 }
 ?>

@@ -14,10 +14,10 @@ if (isset($_GET["nav"])) {
         }
 
         else if ($_GET["nav"] == "vote") {
-            require_once("src/controllers/Vote.php");
+            require_once("src/controllers/VoteController.php");
             $data["vote"] = $_GET["vote"];
-            $data["img"] = $_GET["img"];
-            $voter = new ctrl\Vote();
+            $data["img_id"] = $_GET["img"];
+            $voter = new ctrl\VoteController();
             $voter->submit($data);
         }
 

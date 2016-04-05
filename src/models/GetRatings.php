@@ -13,6 +13,7 @@ class GetRatings {
         if ($sql->connect_error) 
             return null;
         
+        $result = [];
         $stmt = $sql->stmt_init();
         if ($stmt->prepare("SELECT IMG_ID, RATING
                             FROM VOTES
