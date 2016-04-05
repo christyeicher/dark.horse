@@ -5,7 +5,7 @@ require_once("src/configs/Config.php");
 
 class VoteModel extends Model {
     function fetch($data) {
-        $sql = new cft\Config();
+        $sql = new cfg\Config();
         $sql = $sql->connect();
         $result = [];
 
@@ -16,7 +16,12 @@ class VoteModel extends Model {
                                 WHERE USER_ID = ?")) {
                 $stmt->bind_param("i", $data);
                 $stmt->execute();
-                $result = $stmt->fetch_all(MYSQLI_ASSOC);
+                $stmt->bind_result($id);
+                $i = 0;
+                while ($stmt->fetch()) {
+                    $result[$i] = $id;
+                    $i++;
+                }
                 $stmt->close();
             }
             $sql->close();

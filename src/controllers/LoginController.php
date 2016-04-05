@@ -2,6 +2,7 @@
 namespace dark_horse\hw3\controllers;
 use dark_horse\hw3\models as mod;
 use dark_horse\hw3\views as view;
+require_once("src/controllers/Controller.php");
 
 class LoginController extends Controller {
     function submit($data) {

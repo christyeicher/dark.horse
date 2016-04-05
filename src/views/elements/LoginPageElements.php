@@ -1,5 +1,6 @@
 <?php
 namespace dark_horse\hw3\views\elements;
+require_once("src/views/elements/Element.php");
 
 class LoginPageElements extends Element {
     const top = "<!doctype html>
