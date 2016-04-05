@@ -3,8 +3,12 @@ namespace dark_horse\hw3\models;
 use dark_horse\hw3\configs as cfg;
 require_once("src/configs/Config.php");
 
-class LoginModel {
-    function login($user, $pass) {
+class LoginModel extends Model {
+    function fetch($data) {
+        $user = $data[0];
+        $pass = $pass[1];
+        $result = ["Could not prepare statement.", null, null];
+
         $sql = new cfg\Config();
         $sql = $sql->connect();
 
@@ -15,20 +19,19 @@ class LoginModel {
         if ($stmt->prepare("SELECT USER_ID, NAME
                             FROM USER
                             WHERE USERNAME = ?
-                            AND PASSWORD = ?;")) {
-
+                            AND PASSWORD = ?")) {
             $stmt->bind_param("ss", $user, $pass);
             $stmt->execute();
             $stmt->bind_result($id, $name);
-            if ($stmt->fetch()) 
-                return [null, $id, $name];
             
+            if ($stmt->fetch()) 
+                $result = [null, $id, $name];
+            else
+                $result = ["Invalid credentials.", null, null];
             $stmt->close();
-            $sql->close();
-            return ["Invalid credentials.", null, null];
         }
         $sql->close();
-        return ["Could not prepare statement.", null, null];
+        return $result;
     }
 }
 ?>

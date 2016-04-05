@@ -1,7 +1,7 @@
 <?php
 namespace dark_horse\hw3\views\elements;
 
-class LoginPageElements {
+class LoginPageElements extends Element {
     const top = "<!doctype html>
 <html>
     <head>

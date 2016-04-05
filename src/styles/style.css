@@ -36,13 +36,24 @@ h1 {
 h2 {
     font-size: large;
 }
+table.images {
+    margin: auto;
+    border-spacing: 10px;
+    border-color: white;
+    border-width: 1px;
+}
+td.images {
+    width: 33%;
+    margin: auto;
+}
 div.wrapper-box{
     border-radius: 25px;
     background: #2F4F4F;
     padding: 20px;
 }
 img {
-    height: 200px;
+    max-height: 250px;
+    max-width: 250px;
 }
 div.image {
     vertical-align: top;

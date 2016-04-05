@@ -3,12 +3,13 @@ namespace dark_horse\hw3\controllers;
 use dark_horse\hw3\models as mod;
 use dark_horse\hw3\views as view;
 
-class LoginController {
+class LoginController extends Controller {
     function submit($data) {
         if (isset($data["user"]) and isset($data["pass"])) {
             require_once("src/models/LoginModel.php");
             $login = new mod\LoginModel();
-            $credentials = $login->login($data["user"], $data["pass"]);
+            $credentials = $login->fetch([$data["user"], 
+                                          $data["pass"]]);
             if ($credentials[0] == null) {
                 session_start();
                 $_SESSION["user_id"] = $credentials[1];

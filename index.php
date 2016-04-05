@@ -51,8 +51,8 @@ else if (isset($_GET["user"]) and isset($_GET["pass"])) {
 
 // No navigation request. Display front page.
 else {
-    require_once("src/controllers/FrontPage.php");
-    $page = new ctrl\FrontPage();
-    $page->render(null);
+    require_once("src/controllers/FrontPageController.php");
+    $page = new ctrl\FrontPageController();
+    $page->submit(null);
 }
 ?>

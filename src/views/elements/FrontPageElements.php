@@ -1,7 +1,12 @@
 <?php
 namespace dark_horse\hw3\views\elements;
+require_once("src/views/elements/Element.php");
 
-class FrontPage {
+class FrontPageElements extends Element {
+    function render($data) {
+        
+    }
+    
     const top = "<!doctype html>
 <html>
 <head>

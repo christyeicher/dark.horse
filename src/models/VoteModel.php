@@ -3,9 +3,29 @@ namespace dark_horse\hw3\models;
 use dark_horse\hw3\configs as cfg;
 require_once("src/configs/Config.php");
 
-class VoteModel {
-    // This fetch does not return data.
+class VoteModel extends Model {
     function fetch($data) {
+        $sql = new cft\Config();
+        $sql = $sql->connect();
+        $result = [];
+
+        if (!$sql->connect_errno) {
+            $stmt = $sql->stmt_init();
+            if ($stmt->prepare("SELECT IMG_ID
+                                FROM VOTES
+                                WHERE USER_ID = ?")) {
+                $stmt->bind_param("i", $data);
+                $stmt->execute();
+                $result = $stmt->fetch_all(MYSQLI_ASSOC);
+                $stmt->close();
+            }
+            $sql->close();
+        }
+        return $result;
+    }
+
+    // This function does not return data.
+    function submit($data) {
         $sql = new cfg\Config();
         $sql = $sql->connect(); 
 
@@ -14,7 +34,7 @@ class VoteModel {
         if ($stmt->prepare("SELECT RATING
                             FROM VOTES
                             WHERE USER_ID = ?
-                            AND IMG_ID = ?;")) {
+                            AND IMG_ID = ?")) {
             $stmt->bind_param("ii", 
                               $data["user_id"],
                               $data["img_id"]);
@@ -24,7 +44,7 @@ class VoteModel {
                 // Prepare insert statement.
                 if ($stmt->prepare("INSERT
                                     INTO VOTES
-                                    VALUES(?, ?, ?);")) {
+                                    VALUES(?, ?, ?)")) {
                     $stmt->bind_param("iii",
                                       $data["user_id"],
                                       $data["img_id"],
@@ -35,9 +55,9 @@ class VoteModel {
                     self::recalculate_ratings($stmt, $sql, $data["img_id"]);
                 }
             }
+            $stmt->close();
         }
         // Close db.
-        $stmt->close();
         $sql->close();
     }
 
@@ -45,7 +65,7 @@ class VoteModel {
         // Prepare select statement to sum all.
         if ($stmt->prepare("SELECT RATING
                             FROM VOTES
-                            WHERE IMG_ID = ?;")) {
+                            WHERE IMG_ID = ?")) {
             
             $stmt->bind_param("i", $img_id);
             $stmt->execute();
@@ -65,7 +85,7 @@ class VoteModel {
                 // Prepare update statement.
                 if ($stmt->prepare("UPDATE PICTURES
                                     SET RATING = ?
-                                    WHERE IMG_ID = ?;")) {
+                                    WHERE IMG_ID = ?")) {
                     $stmt->bind_param("di",
                                       $new_rating,
                                       $img_id);
