@@ -19,14 +19,12 @@ if (isset($_GET["nav"])) {
             $destination = new ctrl\LogoutPageController();
         
         // Vote request.
-        else if ($_GET["nav"] == "vote") {
+        else if ($_GET["nav"] == "vote") 
             $destination = new ctrl\VoteController();
-        }
 
         // Upload request.
-        else if ($_GET["nav"] == "upload") {
+        else if ($_GET["nav"] == "upload") 
             header("Location: src/views/Upload.html");
-        }
     }
     
     // Requests for users not logged in.
@@ -36,9 +34,8 @@ if (isset($_GET["nav"])) {
             $destination = new ctrl\LoginPageController();
 
         // Signup request.
-        else if ($_GET["nav"] == "signup") {
+        else if ($_GET["nav"] == "signup") 
             header("Location: src/views/Signup.html");
-        }
     }
 }
 
