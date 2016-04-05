@@ -30,7 +30,8 @@ class ImagesHelper extends Helper {
                 if ($n < count($data[0])) {
                     echo "<td class='image-data'>";
                     $imagedata->render([$data[0][$n],
-                                        $data[1]]);
+                                        $data[1],
+                                        $data[2]]);
                     echo "</td>";
                 }
             }

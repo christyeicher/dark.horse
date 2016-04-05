@@ -28,10 +28,12 @@ class FrontPageView extends View {
         echo el\FrontPageElements::middleRecent;
         $helper = new hlp\ImagesHelper();
         $helper->render([$data["most_recent"],
+                         $data["votes"],
                          $data["user_id"]]);
 
         echo el\FrontPageElements::middlePopular;
         $helper->render([$data["most_popular"],
+                         $data["votes"],
                          $data["user_id"]]);
         
         echo el\FrontPageElements::bottom;

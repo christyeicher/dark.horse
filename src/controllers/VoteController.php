@@ -1,6 +1,7 @@
 <?php
 namespace dark_horse\hw3\controllers;
 use dark_horse\hw3\models as mod;
+require_once("src/controllers/Controller.php");
 require_once("src/models/VoteModel.php");
 
 class VoteController extends Controller {

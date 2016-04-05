@@ -30,8 +30,10 @@ class FrontPageController extends Controller {
             $data["user_id"] = $_SESSION["user_id"];
             $data["user_name"] = $_SESSION["user_name"];
         }
-        else
+        else {
             $data["user_id"] = 0;
+            $data["votes"] = [];
+        }
 
         $view = new view\FrontPageView();
         $view->render($data);

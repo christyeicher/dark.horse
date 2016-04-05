@@ -1,6 +1,7 @@
 <?php
 namespace dark_horse\hw3\models;
 use dark_horse\hw3\configs as cfg;
+require_once("src/models/Model.php");
 require_once("src/configs/Config.php");
 
 class VoteModel extends Model {
