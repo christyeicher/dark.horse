@@ -1,17 +1,22 @@
-<!doctype html>
+<?php
+namespace dark_horse\hw3\views;
+require_once("src/views/View.php");
+
+class LogoutPageView extends View {
+    function render($data) {?><!doctype html>
 <html>
     <head>
         <title>Logout page</title>
         <meta charset='utf-8' />
         <meta http-equiv="refresh" 
-              content="5;url=/dark.horse/index.php" />
+              content="3;url=/dark.horse/index.php" />
         <link rel='stylesheet'
-              href='../styles/style.css'
+              href='src/styles/style.css'
               type='text/css'>
     </head>
     <body>
         <div id='wrapper'>
-            <img src='../resources/logo.png'
+            <img src='src/resources/logo.png'
                  alt='Dark Horse, Inc.'>
             <h1>You have been logged out.</h1>
             <div class='wrapper-box'>
@@ -19,5 +24,8 @@
             </div>
         </div>
     </body>
-</html>
+</html><?php
+    }
+};
+?>
 

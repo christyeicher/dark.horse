@@ -1,26 +1,29 @@
 <?php
 session_start();
 use dark_horse\hw3\controllers as ctrl;
-use dark_horse\hw3\views as view;
+
+require_once("src/controllers/LogoutPageController.php");
+require_once("src/controllers/VoteController.php");
+require_once("src/views/LoginPageView.php");
+require_once("src/controllers/LoginPageController.php");
+require_once("src/controllers/FrontPageController.php");
+// Default destination.
+$destination = new ctrl\FrontPageController();
 
 // Navigational requests.
 if (isset($_GET["nav"])) {
     // Request for logged in users.
     if (isset($_SESSION["user_name"])) {
-        echo "session";
-        if ($_GET["nav"] == "logout") {
-            session_destroy();
-            header("Location: src/views/Logout.html");
-        }
-
+        // Logout request.
+        if ($_GET["nav"] == "logout") 
+            $destination = new ctrl\LogoutPageController();
+        
+        // Vote request.
         else if ($_GET["nav"] == "vote") {
-            require_once("src/controllers/VoteController.php");
-            $data["vote"] = $_GET["vote"];
-            $data["img_id"] = $_GET["img"];
-            $voter = new ctrl\VoteController();
-            $voter->submit($data);
+            $destination = new ctrl\VoteController();
         }
 
+        // Upload request.
         else if ($_GET["nav"] == "upload") {
             header("Location: src/views/Upload.html");
         }
@@ -29,11 +32,8 @@ if (isset($_GET["nav"])) {
     // Requests for users not logged in.
     else {
         // Login request.
-        if ($_GET["nav"] == "login") {
-            require_once("src/views/LoginPageView.php");
-            $view = new view\LoginPageView();
-            $view->render(null);
-        }
+        if ($_GET["nav"] == "login") 
+            $destination = new ctrl\LoginPageController();
 
         // Signup request.
         else if ($_GET["nav"] == "signup") {
@@ -43,16 +43,9 @@ if (isset($_GET["nav"])) {
 }
 
 // Login credentials sent.
-else if (isset($_GET["user"]) and isset($_GET["pass"])) {
-    require_once("src/controllers/LoginController.php");
-    $login = new ctrl\LoginController();
-    $login->submit($_GET);
-}
+else if (isset($_GET["user"]) and isset($_GET["pass"])) 
+    $destination = new ctrl\LoginPageController();
 
-// No navigation request. Display front page.
-else {
-    require_once("src/controllers/FrontPageController.php");
-    $page = new ctrl\FrontPageController();
-    $page->submit(null);
-}
+// Display page.
+$destination->submit($_GET);
 ?>

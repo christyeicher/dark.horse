@@ -4,7 +4,7 @@ use dark_horse\hw3\models as mod;
 use dark_horse\hw3\views as view;
 require_once("src/controllers/Controller.php");
 
-class LoginController extends Controller {
+class LoginPageController extends Controller {
     function submit($data) {
         if (isset($data["user"]) and isset($data["pass"])) {
             require_once("src/models/LoginModel.php");
@@ -21,6 +21,10 @@ class LoginController extends Controller {
                 $view = new view\LoginPageView();
                 $view->render($credentials[0]);
             }
+        }
+        else {
+            $view = new view\LoginPageView();
+            $view->render(null);
         }
     }
 }
