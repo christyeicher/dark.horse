@@ -5,15 +5,23 @@ use dark_horse\hw3\views as view;
 require_once("src/controllers/Controller.php");
 require_once("src/models/MostRecent.php");
 require_once("src/models/MostPopular.php");
+require_once("src/models/UserByNameModel.php");
 require_once("src/views/FrontPageView.php");
 
 class FrontPageController extends Controller {
     function submit($data) {
         $data = [];
-        $recent = new mod\MostRecent();
-        $data["most_recent"] = $recent->fetch(3);
-        $popular = new mod\MostPopular();
-        $data["most_popular"] = $popular->fetch(10);
+        $model = new mod\MostRecent();
+        $data["most_recent"] = $model->fetch(3);
+        $model = new mod\MostPopular();
+        $data["most_popular"] = $model->fetch(10);
+
+        $model = new mod\UserByNameModel();
+        foreach($data["most_recent"] as $key => $value) 
+            $data["most_recent"][$key][2] = $model->fetch($value[2])[0];
+
+        foreach($data["most_popular"] as $key => $value) 
+            $data["most_popular"][$key][2] = $model->fetch($value[2])[0];
 
         if (isset($_SESSION["user_id"]) and isset($_SESSION["user_name"])) {
             require_once("src/models/VoteModel.php");

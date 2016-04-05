@@ -22,26 +22,26 @@ class ImageDataElement extends Element {
 
         if (true or isset($data["voted"]) and !$data["voted"])
             echo "<a href='index.php?nav=vote&vote=1&img="
-                          . $data["IMG_ID"] . "'>
+                          . $data[0][0] . "'>
                      <img class='vote' alt='Boo!' title='Vote: Boo!' 
                           src='src/resources/novote.png'></a>
                   <a href='index.php?nav=vote&vote=2&img="
-                          . $data["IMG_ID"] . "'>
+                          . $data[0][0] . "'>
                      <img class='vote' alt='Meh!' title='Vote: Meh!' 
                           src='src/resources/novote.png'
                           style='clip:rect(0px, 64px, 16px, 0px);'></a>
                   <a href='index.php?nav=vote&vote=3&img="
-                          . $data["IMG_ID"] . "'>
+                          . $data[0][0] . "'>
                      <img class='vote' alt='Tis alright!' title='Vote: Tis alright!' 
                           src='src/resources/novote.png'
                           style='clip:rect(0px, 48px, 16px, 0px);'></a>
                   <a href='index.php?nav=vote&vote=4&img="
-                          . $data["IMG_ID"] . "'>
+                          . $data[0][0] . "'>
                      <img class='vote' alt='Liked it!' title='Vote: Liked it!' 
                           src='src/resources/novote.png'
                           style='clip:rect(0px, 32px, 16px, 0px);'></a>
                   <a href='index.php?nav=vote&vote=5&img="
-                          . $data["IMG_ID"] . "'>
+                          . $data[0][0] . "'>
                      <img class='vote' alt='Loved it!' title='Vote: Loved it!'
                           src='src/resources/novote.png'
                           style='clip:rect(0px, 16px, 16px, 0px);'></a>";
