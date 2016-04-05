@@ -24,7 +24,7 @@ div#recent-images{
 }
 a {
     color: white;
-    cursor: crosshair;
+    cursor: pointer;
 }
 a:hover{
     color: black;
@@ -41,10 +41,13 @@ table.images {
     border-spacing: 10px;
     border-color: white;
     border-width: 1px;
+    border-style: solid;
 }
 td.images {
     width: 33%;
-    margin: auto;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
 }
 div.wrapper-box{
     border-radius: 25px;
@@ -62,6 +65,7 @@ div.image {
 }
 .image-text {
     display: block;
+    padding-bottom: 20px;
 }
 span.rating {
     position: relative;
@@ -104,9 +108,10 @@ a.vote5 {
     height: 16px;
 }
 img.vote {
-    width: 16px;
-    height: 16px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
 }
 img.vote:hover {
-    content: url("../resources/redstar.png");
+    content: url("../resources/vote.png");
 }

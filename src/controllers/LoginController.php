@@ -12,7 +12,6 @@ class LoginController extends Controller {
             $credentials = $login->fetch([$data["user"], 
                                           $data["pass"]]);
             if ($credentials[0] == null) {
-                session_start();
                 $_SESSION["user_id"] = $credentials[1];
                 $_SESSION["user_name"] = $credentials[2];
                 header("Location: index.php");
