@@ -1,17 +1,58 @@
 <?php
 session_start();
 use dark_horse\hw3\controllers as ctrl;
-require_once("./src/controllers/FrontPage.php");
+use dark_horse\hw3\views as view;
 
-if (isset($_SESSION["user_name"]))
-    if (isset($_GET["nav"]) and $_GET["nav"] == "vote")
-            if (isset($_GET["vote"]) and isset($_GET["img"])) {
-                require_once("./src/controllers/Vote.php");
-                $data["vote"] = $_GET["vote"];
-                $data["img_id"] = $_GET["img"];
-                ctrl\Vote::render($data);
-            }
+// Navigational requests.
+if (isset($_GET["nav"])) {
+    // Request for logged in users.
+    if (isset($_SESSION["user_name"])) {
+        echo "session";
+        if ($_GET["nav"] == "logout") {
+            session_destroy();
+            header("Location: src/views/Logout.html");
+        }
 
-ctrl\FrontPage::frontPage();
+        else if ($_GET["nav"] == "vote") {
+            require_once("src/controllers/Vote.php");
+            $data["vote"] = $_GET["vote"];
+            $data["img"] = $_GET["img"];
+            $voter = new ctrl\Vote();
+            $voter->submit($data);
+        }
+
+        else if ($_GET["nav"] == "upload") {
+            header("Location: src/views/Upload.html");
+        }
+    }
+    
+    // Requests for users not logged in.
+    else {
+        // Login request.
+        if ($_GET["nav"] == "login") {
+            require_once("src/views/LoginPageView.php");
+            $view = new view\LoginPageView();
+            $view->render(null);
+        }
+
+        // Signup request.
+        else if ($_GET["nav"] == "signup") {
+            header("Location: src/views/Signup.html");
+        }
+    }
+}
+
+// Login credentials sent.
+else if (isset($_GET["user"]) and isset($_GET["pass"])) {
+    require_once("src/controllers/LoginController.php");
+    $login = new ctrl\LoginController();
+    $login->submit($_GET);
+}
+
+// No navigation request. Display front page.
+else {
+    require_once("src/controllers/FrontPage.php");
+    $page = new ctrl\FrontPage();
+    $page->render(null);
+}
 ?>
-

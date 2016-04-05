@@ -6,7 +6,7 @@ require_once("src/views/PlainFront.php");
 require_once("src/controllers/Most.php");
 
 class FrontPage {
-    function frontPage() {
+    function render() {
         $data["most_recent"] = Most::recent();
         $data["most_popular"] = Most::popular();
         

@@ -9,7 +9,7 @@ class UserFrontView {
         <div id='header-links'>
             Hello, " 
             . $data["user_name"]
-            . " ( <a href='src/controllers/Controller.php?nav=logout'>"
+            . " ( <a href='index.php?nav=logout'>"
             . " LOG OUT</a> )
             <div>
                 <input type='submit' value='upload image'/>

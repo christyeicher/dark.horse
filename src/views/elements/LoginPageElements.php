@@ -1,23 +1,23 @@
 <?php
 namespace dark_horse\hw3\views\elements;
 
-class LoginPage {
+class LoginPageElements {
     const top = "<!doctype html>
 <html>
     <head>
         <title>Log In</title>
         <meta charset='utf-8'>
         <link rel='stylesheet'
-              href='../styles/style.css'
+              href='src/styles/style.css'
               type='text/css'>
     </head>
     <body>
         <div id='wrapper'>
-            <img src='../resources/logo.png'
+            <img src='src/resources/logo.png'
                  alt='Dark Horse, Inc.'>
             <div id='header-links'>
-                <a href='../../index.php'>MAIN PAGE</a> |
-                <a href='Controller.php?nav=signup'>SIGN UP</a>
+                <a href='index.php'>MAIN PAGE</a> |
+                <a href='index.php?nav=signup'>SIGN UP</a>
             </div>
             <h2>Please Enter Your Credentials</h2>
             <div class='wrapper-box'>";
@@ -25,9 +25,9 @@ class LoginPage {
     const bottom = "
                 <form name='login' 
                       method='get' 
-                      action='Controller.php'>
+                      action='index.php'>
                     <input type='text' 
-                           name='user' 
+                           name='user'
                            placeholder='Username'
                            autofocus><br><br>
                     <input type='password' 
@@ -40,5 +40,12 @@ class LoginPage {
         </div>
     </body>
     </html>";
+
+    function render($data) {
+        if ($data == "top")
+            echo $this::top;
+        else if ($data == "bottom")
+            echo $this::bottom;
+    }   
 };
 ?>
