@@ -12,15 +12,13 @@ div#header-links {
     float: right;
     font-size: medium;
 }
-div#popular-images{
+div.images{
     text-align: center;
     color: #73aD21;
     font-weight: bold;
-}
-div#recent-images{
-    text-align: center;
-    color: #73aD21;
-    font-weight: bold;
+    border-radius: 25px;
+    background: #2F4F4F;
+    padding: 20px;
 }
 a {
     color: white;
@@ -38,6 +36,7 @@ h2 {
 }
 table.images {
     margin: auto;
+    width: 100%;
     border-spacing: 10px;
     border-color: white;
     border-width: 1px;
@@ -49,12 +48,7 @@ td.images {
     border-color: white;
     border-width: 1px;
 }
-div.wrapper-box{
-    border-radius: 25px;
-    background: #2F4F4F;
-    padding: 20px;
-}
-img {
+img.images{
     max-height: 250px;
     max-width: 250px;
 }
@@ -63,7 +57,7 @@ div.image {
     display: inline-block;
     text-align: center;
 }
-.image-text {
+span.image-text {
     display: block;
     padding-bottom: 20px;
 }
@@ -76,36 +70,6 @@ span.rating {
 img.rating {
     position: absolute;
     left: 0;
-    height: 16px;
-}
-a.vote1 {
-    text-decoration: none;
-    position: absolute;
-    left: -1px;
-    height: 16px;
-}
-a.vote2 {
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    height: 16px;
-}
-a.vote3 {
-    text-decoration: none;
-    position: absolute;
-    left: 30px;
-    height: 16px;
-}
-a.vote4 {
-    text-decoration: none;
-    position: absolute;
-    left: 46px;
-    height: 16px;
-}
-a.vote5 {
-    text-decoration: none;
-    position: absolute;
-    left: 62px;
     height: 16px;
 }
 img.vote {

@@ -76,7 +76,7 @@ class FrontPageElements extends Element {
 
     private function credPrompt() {?>
         <h2>Please Enter Your Credentials</h2>
-        <div class='wrapper-box'>
+        <div class='images'>
 <?php
     }
 
@@ -108,16 +108,14 @@ class FrontPageElements extends Element {
 
     private function recent() {?>
         <h2>Recent Images</h2>
-        <div id='recent-images' 
-             class='wrapper-box'>
+        <div class='images'>
 <?php
     }
 
     private function popular() {?>
         </div>
         <h2>Popular Images</h2>
-        <div id='popular-images'
-             class='wrapper-box'>
+        <div class='images'>
 <?php
     }
 

@@ -16,13 +16,13 @@ class SignupPageView extends View {
 
         if ($success) {
             echo "\t<h2>$data</h2>\n";
-            echo "\t<div class='wrapper-box'>\n";
+            echo "\t<div class='images'>\n";
             echo "\t    <div class='header-links'>
                 <a href='index.php?nav=login'>LOG IN</a>\n\t    </div>\n";
         }
         else {
             echo "\t<h2>Please Enter Your Information. All Fields are Required.</h2>\n";
-            echo "\t<div class='wrapper-box'>\n";
+            echo "\t<div class='images'>\n";
             if (isset($data))
                 $elementary->credError($data);
             $elementary->render("signupForm");
