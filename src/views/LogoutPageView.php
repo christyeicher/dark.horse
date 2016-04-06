@@ -16,9 +16,12 @@ class LogoutPageView extends View {
     </head>
     <body>
         <div id='wrapper'>
-            <img src='src/resources/logo.png'
-                 alt='Dark Horse, Inc.'>
-            <h1>You have been logged out.</h1>
+            <h1 title='Image Rating'>
+                <img src='src/resources/logo.png'
+                     alt='Dark Horse, Inc.'
+                     title='Dark Horse, Inc.'>
+            <h1>
+            <h2>You have been logged out.</h2>
             <div class='images'>
                 <h2>You will be forwarded to the front page.</h2>
             </div>
