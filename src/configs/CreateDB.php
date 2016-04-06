@@ -13,7 +13,7 @@ function connect() {
 
     echo "Connecting to MySQL... ";
     if ($sql->connect_errno) {
-        echo "Failed to connect to MySQL: " . $sql->connect_error() . "\n";
+        echo "Failed to connect to MySQL: " . $sql->connect_error . "\n";
         exit();
     }
     echo "Connected.\n";
