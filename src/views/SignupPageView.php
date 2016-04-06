@@ -3,6 +3,8 @@ namespace dark_horse\hw3\views;
 use dark_horse\hw3\views\elements as el;
 require_once("src/views/View.php");
 require_once("elements/FrontPageElements.php");
+require_once("elements/LoginPageElements.php");
+require_once("elements/SignupPageElements.php");
 
 class SignupPageView extends View {
     function render($data) {
@@ -11,9 +13,11 @@ class SignupPageView extends View {
         if (isset($data)) 
             $success = substr($data, 0, 7) == "Registr";
 
-        $elementary = new el\FrontPageElements();
-        $elementary->render("top");
+        $elemFrontPg = new el\FrontPageElements();
+        $elemSignupPg = new el\SignupPageElements();
 
+        $elemFrontPg->render("top");
+        $elemSignupPg->render("links");
         if ($success) {
             echo "\t<h2>$data</h2>\n";
             echo "\t<div class='images'>\n";
@@ -21,13 +25,14 @@ class SignupPageView extends View {
                 <a href='index.php?nav=login'>LOG IN</a>\n\t    </div>\n";
         }
         else {
-            echo "\t<h2>Please Enter Your Information. All Fields are Required.</h2>\n";
-            echo "\t<div class='images'>\n";
-            if (isset($data))
-                $elementary->credError($data);
-            $elementary->render("signupForm");
+            $elemSignupPg->render("prompt");
+            if (isset($data)) {
+                $elemLoginPg = new el\LoginPageElements();
+                $elemLoginPg->credError($data);
+            }
+            $elemSignupPg->render("form");
         }
-        $elementary->render("bottom");
+        $elemFrontPg->render("bottom");
     }
 }
 ?>

@@ -3,19 +3,22 @@ namespace dark_horse\hw3\views;
 use dark_horse\hw3\views\elements as el;
 require_once("src/views/View.php");
 require_once("elements/FrontPageElements.php");
+require_once("elements/LoginPageElements.php");
 
 class LoginPageView extends View {
     function render($data) {
-        $elementary = new el\FrontPageElements();
-        $elementary->render("top");
-        $elementary->render("mainpagesignup");
-        $elementary->render("prompt");
+        $elemFrontPg = new el\FrontPageElements();
+        $elemLoginPg = new el\LoginPageElements();
+
+        $elemFrontPg->render("top");
+        $elemLoginPg->render("links");
+        $elemLoginPg->render("prompt");
 
         if ($data) 
-            $elementary->credError($data);        
+            $elemLoginPg->credError($data);        
         
-        $elementary->render("form");
-        $elementary->render("bottom");
+        $elemLoginPg->render("form");
+        $elemFrontPg->render("bottom");
     }
 }
 ?>
