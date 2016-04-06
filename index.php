@@ -6,6 +6,7 @@ require_once("src/controllers/VoteController.php");
 require_once("src/views/LoginPageView.php");
 require_once("src/controllers/LoginPageController.php");
 require_once("src/controllers/FrontPageController.php");
+require_once("src/controllers/SignupPageController.php");
 require_once("src/controllers/UploadPageController.php");
 
 // Default destination.
@@ -36,13 +37,20 @@ if (isset($_GET["nav"])) {
 
         // Signup request.
         else if ($_GET["nav"] == "signup") 
-            header("Location: src/views/Signup.html");
+            $destination = new ctrl\SignupPageController();
     }
 }
 
 // Login credentials sent.
 else if (isset($_GET["user"]) and isset($_GET["pass"])) 
     $destination = new ctrl\LoginPageController();
+
+// Some signup info sent.
+else if (isset($_GET["newuser"])
+     or  isset($_GET["newpass1"])
+     or  isset($_GET["newpass2"])
+     or  isset($_GET["newname"]))
+    $destination = new ctrl\SignupPageController();
 
 // Display page.
 $destination->submit($_GET);
