@@ -13,8 +13,8 @@ class SignupPageView extends View {
         if (isset($data)) 
             $success = substr($data, 0, 7) == "Registr";
 
-        $elemFrontPg = new el\FrontPageElements();
-        $elemSignupPg = new el\SignupPageElements();
+        $elemFrontPg = new el\FrontPageElements($this);
+        $elemSignupPg = new el\SignupPageElements($this);
 
         $elemFrontPg->render("top");
         $elemSignupPg->render("links");
@@ -27,7 +27,7 @@ class SignupPageView extends View {
         else {
             $elemSignupPg->render("prompt");
             if (isset($data)) {
-                $elemLoginPg = new el\LoginPageElements();
+                $elemLoginPg = new el\LoginPageElements($this);
                 $elemLoginPg->credError($data);
             }
             $elemSignupPg->render("form");

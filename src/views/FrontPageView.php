@@ -8,7 +8,7 @@ require_once("helpers/ImagesHelper.php");
 
 class FrontPageView extends View {
     function render($data) {
-        $elementary = new el\FrontPageElements();
+        $elementary = new el\FrontPageElements($this);
         $helper = new hlp\ImagesHelper();
         
         $elementary->render("top");

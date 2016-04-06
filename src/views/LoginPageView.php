@@ -7,8 +7,8 @@ require_once("elements/LoginPageElements.php");
 
 class LoginPageView extends View {
     function render($data) {
-        $elemFrontPg = new el\FrontPageElements();
-        $elemLoginPg = new el\LoginPageElements();
+        $elemFrontPg = new el\FrontPageElements($this);
+        $elemLoginPg = new el\LoginPageElements($this);
 
         $elemFrontPg->render("top");
         $elemLoginPg->render("links");

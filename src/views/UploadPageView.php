@@ -8,7 +8,7 @@ class UploadPageView extends View
 {
     function render($data)
     {
-        $element = new el\UploadPageElements();
+        $element = new el\UploadPageElements($this);
         $element->render("top");
 
         if ($data) {

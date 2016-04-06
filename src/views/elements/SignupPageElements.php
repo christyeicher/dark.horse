@@ -3,6 +3,12 @@ namespace dark_horse\hw3\views\elements;
 require_once("src/views/elements/Element.php");
 
 class SignupPageElements extends Element {
+    $view = null;
+
+    function __construct($caller) {
+        $view = $caller;
+    }
+
     function render($data) {
         if (isset($data)) {
             if ($data == "form")

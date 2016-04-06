@@ -6,11 +6,16 @@ require_once("src/views/elements/ImageElement.php");
 require_once("src/views/elements/ImageDataElement.php");
 
 class ImagesHelper extends Helper {
+    $view = null;
+    function __contstruct($caller) {
+        $view = $caller;
+    }
+    
     function render($data) {
         $cols = 3;
         $rows = floor(count($data[0])/3);
-        $image = new el\ImageElement();
-        $imagedata = new el\ImageDataElement();
+        $image = new el\ImageElement($this);
+        $imagedata = new el\ImageDataElement($this);
 
         // Begining of table
         echo "\t    <table class='images'>\n";

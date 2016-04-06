@@ -3,6 +3,11 @@ namespace dark_horse\hw3\views\elements;
 require_once("src/views/elements/Element.php");
 
 class UploadPageElements extends Element {
+    $view = null;
+
+    function __construct($caller) {
+        $view = $caller;
+    }
 
     const top = "<!doctype html>
 <html>
