@@ -3,22 +3,22 @@ namespace dark_horse\hw3\views\elements;
 require_once("src/views/elements/Element.php");
 
 class ImageDataElement extends Element {
-    function render($data) {
-        // Legend: [0] img_id, [1] rating, [2] user_id, [3] caption, [4] posted
-        echo "\n            <div class='image'>
-               <span class='image-text'>
-                    Caption: " . $data[0][3] . "<br>
-                    Uploaded by: " . $data[0][2] . "<br>
-                    <span class='rating'>
-                       <img class='rating'
-                            alt='rating background'
-                            src='src/resources/0star.png'>
-                       <img class='rating'
-                            src='src/resources/5star.png'
-                            alt='Out of five stars.'
-                            style='clip:rect(0px "
-                            . $data[0][1]*16
-                            . "px 16px 0px);'>";
+    // Legend: [0] img_id, [1] rating, [2] user_id, [3] caption, [4] posted
+    function render($data) {?>
+                        <span class='image-text'>
+                            Caption: <?php echo $data[0][3]?><br>
+                            Uploaded by: <?php echo $data[0][2]?><br>
+                            <span class='rating'>
+                                <img class='rating'
+                                     alt='rating background'
+                                     src='src/resources/0star.png'>
+                                <img class='rating'
+                                     src='src/resources/5star.png'
+                                     alt='Out of five stars.'
+                                     style='clip:rect(0px "<?php
+                                     echo $data[0][1]*16?>px 16px 0px);'>
+<?php
+    
 
         // If user hasn't voted, allow voting.
         if (count($data[1]) and !in_array($data[0][0], $data[1]))
@@ -41,11 +41,11 @@ class ImageDataElement extends Element {
                      <img class='vote' alt='Boo!' title='Vote: Boo!' 
                           src='src/resources/novote.png'
                           style='clip:rect(0px, 16px, 16px, 0px);'></a>";
-
-        echo "</span><br>
-                    Date: " . $data[0][4] . "<br>
-                </span>
-            </div>";
+?>
+                            </span><br>
+                            Date: " <?php echo $data[0][4]?><br>
+                        </span>
+<?php
     }
 }
 ?>

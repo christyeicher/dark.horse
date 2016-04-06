@@ -8,35 +8,26 @@ require_once("helpers/ImagesHelper.php");
 
 class FrontPageView extends View {
     function render($data) {
-        echo el\FrontPageElements::top;
-        
-        if (isset($data["user_name"])) {
-            echo "
-            <div id='header-links'>
-                Hello, " 
-                . $data["user_name"]
-                . " ( <a href='index.php?nav=logout'>"
-                . " LOG OUT</a> )
-                <div>
-                    <input type='submit' value='upload image'/>
-                </div>
-            </div>";
-        }
-        else 
-            echo el\FrontPageElements::loginsignup;
-        
-        echo el\FrontPageElements::middleRecent;
+        $elementary = new el\FrontPageElements();
         $helper = new hlp\ImagesHelper();
+        
+        $elementary->render("top");
+        if (isset($data["user_name"])) 
+            $elementary->render($data["user_name"]);
+        else 
+            $elementary->render("loginsignup");
+        
+        $elementary->render("recent");
         $helper->render([$data["most_recent"],
                          $data["votes"],
                          $data["user_id"]]);
 
-        echo el\FrontPageElements::middlePopular;
+        $elementary->render("popular");
         $helper->render([$data["most_popular"],
                          $data["votes"],
                          $data["user_id"]]);
         
-        echo el\FrontPageElements::bottom;
+        $elementary->render("bottom");
     }
 }
 ?>

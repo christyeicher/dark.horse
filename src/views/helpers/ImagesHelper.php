@@ -13,32 +13,33 @@ class ImagesHelper extends Helper {
         $imagedata = new el\ImageDataElement();
 
         // Begining of table
-        echo "\n            <table class='images'>";
+        echo "\t    <table class='images'>\n";
         for ($r = 0; $r < $rows; $r++) {
-            echo "<tr>";
+            // Row
+            echo "\t\t<tr>\n";
             for ($c = 0; $c < $cols; $c++) {
                 $n = $r * $cols + $c;
                 if ($n < count($data[0])) {
-                    echo "<td class='images'>";
+                    echo "\t\t    <td class='images'>\n";
                     $image->render($data[0][$n]);
-                    echo "</td>";
+                    echo "\t\t    </td>\n";
                 }
             }
-            echo "</tr>\n<tr>";
+            // Row
+            echo "\t\t</tr>\n\t\t<tr>\n";
             for ($c = 0; $c < $cols; $c++) {
                 $n = $r * $cols + $c;
                 if ($n < count($data[0])) {
-                    echo "<td class='image-data'>";
+                    echo "\t\t    <td class='image-data'>\n";
                     $imagedata->render([$data[0][$n],
                                         $data[1],
                                         $data[2]]);
-                    echo "</td>";
+                    echo "\t\t    </td>\n";
                 }
             }
-            echo "</tr>";
+            echo "\t\t</tr>\n";
         }
-        echo "\n            </table>";
+        echo "            </table>\n";
     }
 };
-
 ?>

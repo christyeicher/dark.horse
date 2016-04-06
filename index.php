@@ -7,6 +7,7 @@ require_once("src/controllers/VoteController.php");
 require_once("src/views/LoginPageView.php");
 require_once("src/controllers/LoginPageController.php");
 require_once("src/controllers/FrontPageController.php");
+
 // Default destination.
 $destination = new ctrl\FrontPageController();
 

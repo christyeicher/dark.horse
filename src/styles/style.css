@@ -70,6 +70,7 @@ div.image {
 span.rating {
     position: relative;
     left: -40px;
+    top: 2px;
     height: 16px;
 }
 img.rating {
