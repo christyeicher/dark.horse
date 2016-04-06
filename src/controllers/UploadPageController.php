@@ -10,10 +10,18 @@ require_once("src/models/UploadModel.php");
 class UploadController extends Controller {
     function submit($data){
 
+        $upload = new view\UploadPageView();
+
+        if(isset($_FILES['photo'])) {
+
+            $model = new mod\UploadModel();
+            $message = $model->fetch($data);
+
+        }
+        else $message = "Please select a file for upload.";
 
 
-        $view = new view\UploadPageView();
-        $view->render(null);
+        $upload->render($message);
     }
 }
 

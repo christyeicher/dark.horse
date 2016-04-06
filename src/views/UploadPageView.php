@@ -11,11 +11,12 @@ class UploadPageView extends View
         $element = new el\UploadPageElements();
         $element->render("top");
 
-        if ($data)
+        if ($data) {
             echo "
-                <div style='color: red;'>
-                    $data
-                </div><br>";
+                 <div style='color: white; font-size: larger; font-style: italic;'>
+                     $data
+                 </div><br>";
+        }
 
 
         $element->render("bottom");
