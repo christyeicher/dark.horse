@@ -22,7 +22,7 @@ class SignupPageView extends View {
             echo "\t<h2>$data</h2>\n";
             echo "\t<div class='images'>\n";
             echo "\t    <div class='header-links'>
-                <a href='index.php?nav=login'>LOG IN</a>\n\t    </div>\n";
+                <a href='index.php?nav=login'>SIGN IN</a>\n\t    </div>\n";
         }
         else {
             $elemSignupPg->render("prompt");

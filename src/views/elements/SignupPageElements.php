@@ -50,7 +50,7 @@ class SignupPageElements extends Element {
     private function links() {?>
         <div id='header-links'>
             <a href='index.php'>MAIN PAGE</a> |
-            <a href='index.php?nav=login'>LOG IN</a>
+            <a href='index.php?nav=login'>SIGN IN</a>
         </div>
 <?php
     }
