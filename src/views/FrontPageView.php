@@ -13,7 +13,7 @@ class FrontPageView extends View {
         
         $elementary->render("top");
         if (isset($data["user_name"])) 
-            $elementary->render($data["user_name"]);
+            $elementary->render($data);
         else 
             $elementary->render("loginsignup");
         

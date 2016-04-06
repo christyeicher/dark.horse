@@ -1,7 +1,6 @@
 <?php
 session_start();
 use dark_horse\hw3\controllers as ctrl;
-
 require_once("src/controllers/LogoutPageController.php");
 require_once("src/controllers/VoteController.php");
 require_once("src/views/LoginPageView.php");
