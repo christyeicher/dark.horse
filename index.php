@@ -6,6 +6,7 @@ require_once("src/controllers/VoteController.php");
 require_once("src/views/LoginPageView.php");
 require_once("src/controllers/LoginPageController.php");
 require_once("src/controllers/FrontPageController.php");
+require_once("src/controllers/UploadPageController.php");
 
 // Default destination.
 $destination = new ctrl\FrontPageController();
@@ -23,8 +24,8 @@ if (isset($_GET["nav"])) {
             $destination = new ctrl\VoteController();
 
         // Upload request.
-        else if ($_GET["nav"] == "upload") 
-            header("Location: src/views/Upload.html");
+        else if ($_GET["nav"] == "upload")
+            $destination = new ctrl\UploadController();
     }
     
     // Requests for users not logged in.
