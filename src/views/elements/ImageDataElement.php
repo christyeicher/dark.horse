@@ -16,7 +16,7 @@ class ImageDataElement extends Element {
                                      src='src/resources/5star.png'
                                      alt='Out of five stars.'
                                      style='clip:rect(0px, <?php
-                                     echo $data[0][1]*16?>px, 16px, 0px);'>
+                                     echo ceil($data[0][1]*16)?>px, 16px, 0px);'>
 <?php
 
         // If user hasn't voted, allow voting.
@@ -64,10 +64,13 @@ class ImageDataElement extends Element {
                  \t\t           title='Vote: Boo!' 
                  \t\t           src='src/resources/novote.png'
                  \t\t           style='clip:rect(0px, 16px, 16px, 0px);'>
-                 \t\t</a>\n";
+                 \t\t</a><br>\n";
+
+            echo "\t\t\t    </span>\n\t\t\t    Rate this image!<br>\n";
         }
+        else 
+            echo "\t\t\t    </span><br>\n";
 ?>
-                            </span><br>
                             Date: <?php echo $data[0][4]?><br>
                         </span>
 <?php

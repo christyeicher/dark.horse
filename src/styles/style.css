@@ -38,15 +38,9 @@ table.images {
     margin: auto;
     width: 100%;
     border-spacing: 10px;
-    border-color: white;
-    border-width: 1px;
-    border-style: solid;
 }
 td.images {
     width: 33%;
-    border-style: solid;
-    border-color: white;
-    border-width: 1px;
 }
 img.images{
     max-height: 250px;
