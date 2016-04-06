@@ -6,9 +6,10 @@ require_once("src/views/elements/ImageElement.php");
 require_once("src/views/elements/ImageDataElement.php");
 
 class ImagesHelper extends Helper {
-    $view = null;
-    function __contstruct($caller) {
-        $view = $caller;
+    public $view = null;
+
+    function __contstruct() {
+        $view = func_get_args();
     }
     
     function render($data) {

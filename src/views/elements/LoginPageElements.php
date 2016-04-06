@@ -3,10 +3,10 @@ namespace dark_horse\hw3\views\elements;
 require_once("src/views/elements/Element.php");
 
 class LoginPageElements extends Element {
-    $view = null;
+    public $view = null;
 
-    function __construct($caller) {
-        $view = $caller;
+    function __construct() {
+        $view = func_get_args();
     }
 
     function render($data) {

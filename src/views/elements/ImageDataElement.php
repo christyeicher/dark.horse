@@ -3,10 +3,10 @@ namespace dark_horse\hw3\views\elements;
 require_once("src/views/elements/Element.php");
 
 class ImageDataElement extends Element {
-    $view = null;
+    public $view = null;
     
-    function __construct($caller) {
-        $view = $caller;
+    function __construct() {
+        $view = func_get_args();
     }
 
     // Legend: [0] img_id, [1] rating, [2] user_id, [3] caption, [4] posted
