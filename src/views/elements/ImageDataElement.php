@@ -20,7 +20,7 @@ class ImageDataElement extends Element {
 <?php
 
         // If user hasn't voted, allow voting.
-        if (count($data[1]) and !in_array($data[0][0], $data[1])) {
+        if (isset($data[1]) and !in_array($data[0][0], $data[1])) {
             $tabs = "\t\t\t\t";
             echo $tabs;
             echo "<a href='index.php?nav=vote&vote=5&img=" . $data[0][0] . "'>
@@ -68,7 +68,7 @@ class ImageDataElement extends Element {
         }
 ?>
                             </span><br>
-                            Date: " <?php echo $data[0][4]?><br>
+                            Date: <?php echo $data[0][4]?><br>
                         </span>
 <?php
     }

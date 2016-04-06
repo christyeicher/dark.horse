@@ -26,13 +26,17 @@ class FrontPageController extends Controller {
         if (isset($_SESSION["user_id"]) and isset($_SESSION["user_name"])) {
             require_once("src/models/VoteModel.php");
             $votes = new mod\VoteModel();
-            $data["votes"] = $votes->fetch($_SESSION["user_id"]);
+            $votes = $votes->fetch($_SESSION["user_id"]);
+            if ($votes)
+                $data["votes"] = $votes;
+            else
+                $data["votes"] = [0]; // Give non-empty array to allow voting.
             $data["user_id"] = $_SESSION["user_id"];
             $data["user_name"] = $_SESSION["user_name"];
         }
         else {
             $data["user_id"] = 0;
-            $data["votes"] = [];
+            $data["votes"] = null;
         }
 
         $view = new view\FrontPageView();

@@ -67,7 +67,7 @@ class FrontPageElements extends Element {
 
     private function userLinks($name) {?>
         <div id='header-links'>
-            Hello, <?php $name ?>( 
+            Hello, <?php echo $name ?> ( 
             <a href='index.php?nav=logout'>LOG OUT</a> |
             <a href='index.php?nav=upload'>UPLOAD</a> )
         </div>
