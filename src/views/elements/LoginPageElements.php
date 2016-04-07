@@ -1,4 +1,11 @@
 <?php
+/**
+* LoginPageElements render elements exclusive to the Login page.
+* For example, the login form, credentials error.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\views\elements;
 require_once("src/views/elements/Element.php");
 

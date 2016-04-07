@@ -1,5 +1,11 @@
 <?php
-namespace dark_horse\hw3\views\elements;
+/**
+* class ImageDataElement renders the text below each image,
+* as well as decides whether to render the rating system. 
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/namespace dark_horse\hw3\views\elements;
 require_once("src/views/elements/Element.php");
 
 class ImageDataElement extends Element {
