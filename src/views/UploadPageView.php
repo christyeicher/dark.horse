@@ -2,25 +2,27 @@
 namespace dark_horse\hw3\views;
 use dark_horse\hw3\views\elements as el;
 require_once("src/views/View.php");
+require_once("elements/FrontPageElements.php");
 require_once("elements/UploadPageElements.php");
 
 class UploadPageView extends View
 {
     function render($data)
     {
-        $element = new el\UploadPageElements($this);
-        $element->render("top");
+        $elFrontPg = new el\FrontPageElements($this);
+        $elUpldPg = new el\UploadPageElements($this);
 
-        if ($data) {
-            echo "
-                 <div style='color: white; font-size: larger; font-style: italic;'>
-                     $data
-                 </div><br>";
-        }
+        $elFrontPg->render("top");
+        $elUpldPg->render("links");
 
+        echo "<h2>We hope you are as excited as we are!</h2>\n";
+        echo "<div class='forms'>\n";
 
-        $element->render("bottom");
+        if ($data)
+            echo "<div style='color: red;'>$data</div><br>\n";
 
+        $elUpldPg->render("form");
+        $elFrontPg->render("bottom");
     }
 }
 ?>

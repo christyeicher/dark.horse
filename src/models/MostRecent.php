@@ -12,7 +12,7 @@ class MostRecent extends Model {
 
         if (!$sql->connect_errno) {
             $stmt = $sql->stmt_init();
-            if ($stmt->prepare("SELECT IMG_ID, RATING, USER_ID, CAPTION, POSTED
+            if ($stmt->prepare("SELECT IMG_ID, RATING, USER_ID, CAPTION, POSTED, FILENAME
                                 FROM PICTURES
                                 ORDER BY IMG_ID DESC
                                 LIMIT ?")) {
@@ -22,14 +22,16 @@ class MostRecent extends Model {
                                    $rating,
                                    $user_id,
                                    $caption,
-                                   $posted);
+                                   $posted,
+                                   $filename);
                 $i = 0;
                 while ($stmt->fetch()) {
                     $result[$i] = [$img_id,
                                    $rating,
                                    $user_id,
                                    $caption,
-                                   $posted];
+                                   $posted,
+                                   $filename];
                     $i++;
                 }
                 $stmt->close();

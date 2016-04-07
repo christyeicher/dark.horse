@@ -9,19 +9,43 @@ require_once("src/models/UploadModel.php");
 
 class UploadController extends Controller {
     function submit($data){
+        $view = new view\UploadPageView();
+        $message = null;
+        
+        // Have we got a photo?
+        if (isset($_FILES['photo'])) {
+            $pic = $_FILES['photo'];
 
-        $upload = new view\UploadPageView();
+            // Have we got a caption?
+            if (isset($_POST['caption'])
+             && strlen($_POST['caption']
+             && substr($_POST['caption'], 0, 1) != '&')) {
 
-        if(isset($_FILES['photo'])) {
-
-            $model = new mod\UploadModel();
-            $message = $model->fetch($data);
-
+                $cap = $_POST['caption'];
+                // Is it ok size?
+                if ($pic['size'] < 1000000) {
+                    $type = explode('.', $pic['name']);
+                    // Is it jpeg?
+                    if (end($type) == 'jpg' || end($type) == 'jpeg') {
+                        $model = new mod\UploadModel();
+                        $message = $model->submit([$pic['tmp_name'],
+                                                   $cap,
+                                                   $_SESSION['user_id']]);
+                        // Mazel tov!
+                        if (substr($message, 0, 1) == '_')
+                            header("Location: index.php");
+                    }
+                    else
+                        $message = "Only jpg/jpeg files are allowed.";
+                }
+                else
+                    $message = "File too big!";
+            }
+            else
+                $message = "You must enter a caption.";
         }
-        else $message = "Please select a file for upload.";
 
-
-        $upload->render($message);
+        $view->render($message);
     }
 }
 

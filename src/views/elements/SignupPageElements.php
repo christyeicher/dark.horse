@@ -49,7 +49,7 @@ class SignupPageElements extends Element {
 
     private function prompt() {?>
         <h2>Please Enter Your Information. All fields are required.</h2>
-        <div class='images'>
+        <div class='forms'>
 <?php
     }
 

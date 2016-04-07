@@ -30,7 +30,7 @@ class LoginPageElements extends Element {
 
    private function credPrompt() {?>
         <h2>Please Enter Your Credentials</h2>
-        <div class='images'>
+        <div class='forms'>
 <?php
     }
 

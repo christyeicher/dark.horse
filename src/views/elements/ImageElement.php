@@ -13,7 +13,7 @@ class ImageElement extends Element {
     function render($data) {?>
                         <img class='images'
                              src='src/resources/userimages/<?php
-                        echo $data[0] ?>.jpg'
+                        echo $data[5] ?>.jpg'
                              alt='<?php echo $data[3] ?>'>
 <?php
     }

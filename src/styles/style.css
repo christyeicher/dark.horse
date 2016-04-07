@@ -12,6 +12,14 @@ div#header-links {
     float: right;
     font-size: medium;
 }
+div.forms{
+    text-align: left;
+    color: #73aD21;
+    font-weight: bold;
+    border-radius: 25px;
+    background: #2F4F4F;
+    padding: 20px;
+}
 div.images{
     text-align: center;
     color: #73aD21;
