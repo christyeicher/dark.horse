@@ -57,7 +57,14 @@ class FrontPageElements extends Element {
         <div id='header-links'>
             Hello, <?php echo $name ?> ( 
             <a href='index.php?nav=logout'>LOG OUT</a> )</div><br>
-            <input type="button" onclick="location='index.php?nav=upload'" value="Upload"/>
+                <form action='index.php' name='thisisbad'>
+                    <input type='submit' 
+                           value='UPLOAD'>
+                    <input type='text' 
+                           name='nav' 
+                           value='upload' 
+                           style='visibility: hidden;'>
+                </form>
 <?php
     }
 
