@@ -1,4 +1,13 @@
 <?php
+/**
+* class UploadController sanitizes and validates the uploaded image
+* and the accompanying caption, sends them to the database,
+* and invokes UploadSuccessView if thing went ok, or returns
+* back to UploadPageView with error messages.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 
 namespace dark_horse\hw3\controllers;
 use dark_horse\hw3\models as mod;

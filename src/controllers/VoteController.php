@@ -1,4 +1,12 @@
 <?php
+/**
+* class VoteController submits a vote to the VoteModel
+* It does not expect any data back. If user used trickery
+* to attempt to vote again, the model silently discards the request.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\controllers;
 use dark_horse\hw3\models as mod;
 require_once("src/controllers/Controller.php");

@@ -1,4 +1,12 @@
 <?php
+/**
+* class FrontPageController fetches data for images and,
+* if viewer is logged in, fetch their votes (so they can't vote again)
+* and their send that data, along with the user id to the FrontPageView
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\controllers;
 use dark_horse\hw3\models as mod;
 use dark_horse\hw3\views as view;

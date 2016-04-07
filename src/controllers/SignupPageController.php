@@ -1,4 +1,12 @@
 <?php
+/**
+* class SignupPageController validates the signup data
+* sends it to the database, and invokes the
+* SignupPageView 
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\controllers;
 use dark_horse\hw3\models as mod;
 use dark_horse\hw3\views as view;

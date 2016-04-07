@@ -1,4 +1,12 @@
 <?php
+/**
+* class LoginPageController sanitizes the data sent to it
+* makes calls to the database, and sends data to the 
+* LoginPageView, which will inform the user about the progress.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\controllers;
 use dark_horse\hw3\models as mod;
 use dark_horse\hw3\views as view;
