@@ -14,7 +14,7 @@ class UploadModel extends Model {
         error_reporting(E_ALL);
 
         // Path and filename.
-        $uploaddir = 'src/resources/userimages/';
+        $uploaddir = 'src/resources/';
         $randomString = "_" . rand() . "_" . rand() . "_" . rand();
         $ext = ".jpg";
         $uploadfile = $uploaddir . $randomString;
