@@ -23,7 +23,7 @@ if (!is_writable("../resources/")) {
             echo "Failed.\nFix this and come back.\n";
             exit();
         }
-    
+
 }
 else
     echo "Granted.\n";
@@ -218,6 +218,7 @@ function populate_table_votes($sql) {
 
 $sql = connect();
 create_db($sql);
+mysqli_select_db("HW3");
 create_table_pics($sql);
 populate_table_pics($sql);
 create_table_user($sql);
