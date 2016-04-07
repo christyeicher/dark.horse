@@ -5,10 +5,18 @@ use dark_horse\hw3\models as mod;
 use dark_horse\hw3\views as view;
 require_once("src/controllers/Controller.php");
 require_once("src/views/UploadPageView.php");
+require_once("src/views/UploadSuccessView.php");
 require_once("src/models/UploadModel.php");
 
 class UploadController extends Controller {
     function submit($data){
+        // Deadline's coming, implement shortcuts.
+        if (isset($data['res']) and $data['res'] == "ok") {
+            $view = new view\UploadSuccessView();
+            $view->render(null);
+            exit();
+        }
+
         $view = new view\UploadPageView();
         $message = null;
         
@@ -33,7 +41,7 @@ class UploadController extends Controller {
                                                    $_SESSION['user_id']]);
                         // Mazel tov!
                         if (substr($message, 0, 1) == '_')
-                            header("Location: index.php");
+                            header("Location: index.php?nav=upload&res=ok");
                     }
                     else
                         $message = "Only jpg/jpeg files are allowed.";
