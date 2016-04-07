@@ -56,9 +56,15 @@ class FrontPageElements extends Element {
     private function userLinks($name) {?>
         <div id='header-links'>
             Hello, <?php echo $name ?> ( 
-            <a href='index.php?nav=logout'>LOG OUT</a> |
-            <a href='index.php?nav=upload'>UPLOAD</a> )
-        </div>
+            <a href='index.php?nav=logout'>LOG OUT</a> )</div><br>
+                <form action='index.php' name='thisisbad'>
+                    <input type='submit' 
+                           value='UPLOAD'>
+                    <input type='text' 
+                           name='nav' 
+                           value='upload' 
+                           style='visibility: hidden;'>
+                </form> 
 <?php
     }
 
