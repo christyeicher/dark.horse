@@ -18,10 +18,12 @@ if (!is_writable("../resources/")) {
             echo "chmod failed.\n";
             exit();
         }
-    else {
-        echo "Failed.\nFix this and come back.\n";
-        exit();
     }
+    else {
+            echo "Failed.\nFix this and come back.\n";
+            exit();
+        }
+    
 }
 else
     echo "Granted.\n";

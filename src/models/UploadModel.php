@@ -17,7 +17,23 @@ class UploadModel extends Model {
         $uploaddir = 'src/resources/';
         $randomString = "_" . rand() . "_" . rand() . "_" . rand();
         $ext = ".jpg";
-        $uploadfile = $uploaddir . $randomString;
+        $uploadfile = $uploaddir . $randomString . $ext;
+
+
+        // IMAGE ORIENTATION
+        $exif = exif_read_data($_FILES['photo']['tmp_name']);
+        $image = imagecreatefromjpeg($_FILES['photo']['name']);
+
+        if(!empty($exif['Orientation'])) {
+            switch($exif['Orientation']) {
+                case 3:
+                    imagerotate($image, 180, 0); break;
+                case 6:
+                    imagerotate($image, -90, 0); break;
+                case 8:
+                    imagerotate($image, 90, 0); break;
+            }
+        }
 
         // Check if file already exists
         if (file_exists($uploadfile . $ext)) 
