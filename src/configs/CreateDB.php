@@ -2,10 +2,24 @@
 namespace dark_horse\hw3\configs;
 
 if (!file_exists("./CreateDB.php")) {
-    echo "File must be ran from current folder.\n";
+        echo "File must be ran from its current folder.\n";
     exit();
 }
 require_once("./Config.php");
+
+echo "Permissions for src/resources/...";
+if (!is_writable("../resources/")) {
+    echo "Denied!\n";
+    echo "Attempting to chmod o+w src/resources/...";
+    if (chmod("../resources", 0777))
+        echo "Success?\n";
+    else {
+        echo "Failed.\nFix this and come back.\n";
+        exit();
+    }
+}
+else
+    echo "Granted.\n";
 
 function connect() {
     $sql = new Config();
