@@ -29,7 +29,13 @@ class UploadController extends Controller {
              && strlen($_POST['caption']
              && substr($_POST['caption'], 0, 1) != '&')) {
 
-                $cap = $_POST['caption'];
+                // Sanitize string.
+                $cap = trim($_POST['caption']);
+                $cap = filter_var($cap,
+                                  FILTER_SANITIZE_ENCODED,
+                                  FILTER_FLAG_STRIP_LOW
+                                 |FILTER_FLAG_STRIP_HIGH);
+
                 // Is it ok size?
                 if ($pic['size'] < 1000000) {
                     $type = explode('.', $pic['name']);

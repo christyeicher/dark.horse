@@ -11,24 +11,56 @@ class SignupPageController extends Controller {
         $view = new view\SignupPageView();
         $message = null;
         if (!((isset($data["nav"]) and $data["nav"] == "signup"))) {
+            // Are we signing up?
             if (!isset($data["newuser"]))
                 $message = "No username provided.";
-            else if (strlen($data["newuser"]) < 6)
-                $message = "Username must be at least six characters long.";
-            // sanitizing username
-            else if ($data["newuser"] != trim($data["newuser"])
-                 or  $data["newuser"] 
-                     != preg_replace("/[^a-zA-Z0-9]/", "", $data["newuser"]))
-                $message = "Username contains invalid characters.";
+
+            // Is the username long enough, also sanitize    
+            else if (strlen($data["newuser"]) < 6
+                 or $data['newuser'] != trim($data['newuser'])
+                 or $data['newuser'] != filter_var($data['newuser'],
+                                                   FILTER_SANITIZE_ENCODED,
+                                                   FILTER_FLAG_STRIP_LOW
+                                                  |FILTER_FLAG_STRIP_HIGH))
+                $message = "Username is not valid. Length or content.";
+
+            // Validate and sanitize password. Start with easy stuff.
             else if (!isset($data["newpass1"]) || !isset($data["newpass2"]))
                 $message = "Passwords required.";
             else if (strlen($data["newpass1"]) < 8)
                 $message = "Password must be at least eight characters long.";
             else if ($data["newpass1"] != $data["newpass2"]) 
                 $message = "Passwords mismatch.";
-            else if (!isset($data["newname"]) || strlen($data["newname"]) < 1)
-                $message = "No name provided.";
+
+            // San/val proper.    
+            else if ($data['newpass1'] != trim($data['newpass1'])
+                 or  $data['newpass1'] != filter_var($data['newpass1'],
+                                                     FILTER_SANITIZE_ENCODED,
+                                                     FILTER_FLAG_STRIP_LOW
+                                                    |FILTER_FLAG_STRIP_HIGH))
+                $message = "Passwords have ugly characters.";
+
+            // Check and San/val name.
+            else if (!isset($data["newname"]) || strlen($data["newname"]) < 1
+                 or $data['newname'] != trim($data['newname'])
+                 or $data['newname'] != filter_var($data['newname'],
+                                                   FILTER_SANITIZE_ENCODED,
+                                                   FILTER_FLAG_STRIP_LOW
+                                                  |FILTER_FLAG_STRIP_HIGH))
+                $message = "We don't like the name you provided.";
             else {
+                $user = trim($data['user']);
+                $pass = trim($data['pass']);
+                $user = filter_var($user,
+                                    FILTER_SANITIZE_ENCODED,
+                                    FILTER_FLAG_STRIP_LOW
+                                   |FILTER_FLAG_STRIP_HIGH);
+                                                                                                                                
+                $pass = filter_var($pass,
+                                    FILTER_SANITIZE_ENCODED,
+                                    FILTER_FLAG_STRIP_LOW
+                                   |FILTER_FLAG_STRIP_HIGH);
+
                 $model = new mod\SignupModel();
                 if ($model->fetch($data))
                     $message = "Registration successful. Please log in.";
