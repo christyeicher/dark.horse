@@ -1,4 +1,11 @@
 <?php
+/**
+* class VoteModel submits a vote to the database.
+* If user already has voted on this image, it silently discards it.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\models;
 use dark_horse\hw3\configs as cfg;
 require_once("src/models/Model.php");

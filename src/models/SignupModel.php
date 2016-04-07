@@ -1,4 +1,12 @@
 <?php
+/**
+* class SignupModel submits previously validated new user data
+* to the database. If username already exists, it returns a message
+* for the controller to deal with.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\models;
 use dark_horse\hw3\configs as cfg;
 require_once("src/models/Model.php");

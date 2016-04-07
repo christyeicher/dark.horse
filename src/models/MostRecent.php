@@ -1,4 +1,10 @@
 <?php
+/**
+* class MostRecent fetches $count number of most recent images.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\models;
 use dark_horse\hw3\configs as cfg;
 require_once("src/configs/Config.php");

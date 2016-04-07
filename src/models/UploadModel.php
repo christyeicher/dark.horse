@@ -1,4 +1,11 @@
 <?php
+/**
+* class UploadModel stores image information in the database
+* and stores the image in src/resources/
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\models;
 use dark_horse\hw3\configs as cfg;
 require_once("src/models/Model.php");

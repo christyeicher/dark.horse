@@ -1,4 +1,11 @@
 <?php
+/**
+* class MostPopular fetches the $count number of most-popular images,
+* sorted by rating first and posted date second.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\models;
 use dark_horse\hw3\configs as cfg;
 require_once("src/configs/Config.php");

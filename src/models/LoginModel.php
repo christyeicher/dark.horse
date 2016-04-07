@@ -1,4 +1,11 @@
 <?php
+/**
+* class LoginModel matches provided credentials with the
+* database, returning error or the user name and user id.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\models;
 use dark_horse\hw3\configs as cfg;
 require_once("src/models/Model.php");
