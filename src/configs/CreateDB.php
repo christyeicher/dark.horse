@@ -11,8 +11,13 @@ echo "Permissions for src/resources/...";
 if (!is_writable("../resources/")) {
     echo "Denied!\n";
     echo "Attempting to chmod o+w src/resources/...";
-    if (chmod("../resources", 0777))
-        echo "Success?\n";
+    if (chmod("../resources", 0777)) {
+        if (!is_writable("../resources/"))
+            echo "Success?\n";
+        else {
+            echo "chmod failed.\n";
+            exit();
+        }
     else {
         echo "Failed.\nFix this and come back.\n";
         exit();
