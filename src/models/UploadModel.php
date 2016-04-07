@@ -47,7 +47,7 @@ class UploadModel extends Model {
             return "Directory is not writable.";
         
         // If all is good, complete the upload.
-        if (move_uploaded_file($data[0], $uploadfile . $ext)) {
+        if (move_uploaded_file($data[0], $uploadfile)) {
             // ADDING IMAGE INFO TO DATABASE
             $sql = $this->connect();
 
