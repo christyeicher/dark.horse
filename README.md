@@ -9,3 +9,8 @@ sudo apt-get install php5-gd
 sudo apt-get install libjpeg-dev
 sudo apt-get install libfreetype6-dev
 sudo service apache2 restart
+
+
+TEAM INFORMATION
+Team Name: Dark Horse
+Members: Todor Nikolov, Christy Eicher, Dennis Simsiman
