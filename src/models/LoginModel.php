@@ -10,8 +10,7 @@ class LoginModel extends Model {
         $pass = $data[1];
         $result = ["Could not prepare statement.", null, null];
 
-        $sql = new cfg\Config();
-        $sql = $sql->connect();
+        $sql = $this->connect();
 
         if ($sql->connect_errno) 
             return [$sql->connect_error, null, null];

@@ -7,9 +7,7 @@ require_once("src/configs/Config.php");
 class UserByNameModel extends Model {
     function fetch($data) {
         $result = [];
-
-        $sql = new cfg\Config();
-        $sql = $sql->connect();
+        $sql = $this->connect();
 
         if (!$sql->connect_errno) {
             $stmt = $sql->stmt_init();

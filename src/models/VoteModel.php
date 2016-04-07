@@ -6,8 +6,7 @@ require_once("src/configs/Config.php");
 
 class VoteModel extends Model {
     function fetch($data) {
-        $sql = new cfg\Config();
-        $sql = $sql->connect();
+        $sql = $this->connect();
         $result = [];
 
         if (!$sql->connect_errno) {

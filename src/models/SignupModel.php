@@ -7,8 +7,7 @@ require_once("src/configs/Config.php");
 class SignupModel extends Model {
     function fetch($data) {
         $result = false;
-        $sql = new cfg\Config();
-        $sql = $sql->connect();
+        $sql = $this->connect();
 
         if (!$sql->connect_errno) {
             // Check if user exists.

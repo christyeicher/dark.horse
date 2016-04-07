@@ -33,8 +33,7 @@ class UploadModel extends Model {
         // If all is good, complete the upload.
         if (move_uploaded_file($data[0], $uploadfile . $ext)) {
             // ADDING IMAGE INFO TO DATABASE
-            $sql = new cfg\Config();
-            $sql = $sql->connect();
+            $sql = $this->connect();
 
             if ($sql->connect_errno)
                 return $sql->connect_error;

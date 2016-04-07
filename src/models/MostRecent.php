@@ -6,8 +6,7 @@ require_once("src/models/Model.php");
 
 class MostRecent extends Model {
     function fetch($count) {
-        $sql = new cfg\Config();
-        $sql = $sql->connect();
+        $sql = $this->connect();
         $result = [];
 
         if (!$sql->connect_errno) {
