@@ -19,7 +19,7 @@ class UploadPageElements extends Element {
     private function form() {?>
         <form name='upload' 
               method='post' 
-              action=''
+              action='index.php?nav=upload'
               enctype = multipart/form-data>
             <input type='file' 
                    name='photo'/>
