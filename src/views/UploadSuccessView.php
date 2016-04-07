@@ -1,4 +1,11 @@
 <?php
+/**
+* class UploadSuccessView shows a page notifying the user
+* that thier upload was successful. Elements from FrontPageElements
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\views;
 use dark_horse\hw3\views\elements as el;
 require_once("src/views/View.php");
@@ -10,7 +17,6 @@ class UploadSuccessView extends View
     function render($data)
     {
         $elFrontPg = new el\FrontPageElements($this);
-        $elUpldPg = new el\UploadPageElements($this);
 
         $elFrontPg->render("top");?>
         <h2>Image successfully uploaded!</h2>

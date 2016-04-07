@@ -1,4 +1,11 @@
 <?php
+/**
+* class SignupPageView renders the signup page using elements
+* from FrontPageElements and SignupPageElements (form, links, prompt)
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\views;
 use dark_horse\hw3\views\elements as el;
 require_once("src/views/View.php");

@@ -1,4 +1,12 @@
 <?php
+/**
+* class ImageHelper gets an array of image data, (1) user vote data,
+* and user id and iterates over them, sending them to the
+* ImageElement (actual image) and ImageDataElement (info) one at time.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\views\helpers;
 use dark_horse\hw3\views\elements as el;
 require_once("src/views/helpers/Helper.php");

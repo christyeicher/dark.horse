@@ -1,4 +1,11 @@
 <?php
+/**
+* class FrontPageView is responsible for drawing the front page.
+* This is done mostly by using FrontPageElement.
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\views;
 use dark_horse\hw3\views\elements as el;
 use dark_horse\hw3\views\helpers as hlp;

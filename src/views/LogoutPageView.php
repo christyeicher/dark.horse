@@ -1,4 +1,10 @@
 <?php
+/**
+* class LogoutPageView renders the Logout page using only PHP copy mode
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\views;
 require_once("src/views/View.php");
 
@@ -27,7 +33,8 @@ class LogoutPageView extends View {
             </div>
         </div>
     </body>
-</html><?php
+</html>
+<?php
     }
 };
 ?>
