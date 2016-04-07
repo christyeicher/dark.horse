@@ -1,4 +1,12 @@
 <?php
+/**
+* class FrontPageElements contains elements that make many pages,
+* mostly the front one. It contains the top (html, head, title),
+* as well as links, div tags, and bottom (body, html).
+* @author Christy Eicher
+* @author Todor Nikolov
+* @author Dennis Simsiman
+*/
 namespace dark_horse\hw3\views\elements;
 require_once("src/views/elements/Element.php");
 
